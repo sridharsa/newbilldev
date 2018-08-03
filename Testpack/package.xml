@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Testpack</fullName>
+    <description>Here is a test package</description>
+    <types>
+        <members>ChangePasswordController</members>
+        <members>ChangePasswordControllerTest</members>
+        <members>ForgotPasswordController</members>
+        <members>ForgotPasswordControllerTest</members>
+        <members>MyProfilePageController</members>
+        <members>MyProfilePageControllerTest</members>
+        <members>SiteLoginController</members>
+        <members>SiteRegisterController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>SiteFooter</members>
+        <members>SiteLogin</members>
+        <members>SitePoweredBy</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>ChangePassword</members>
+        <members>ForgotPassword</members>
+        <members>ForgotPasswordConfirm</members>
+        <members>SiteLogin</members>
+        <members>SiteRegister</members>
+        <members>SiteRegisterConfirm</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>SiteSamples</members>
+        <name>StaticResource</name>
+    </types>
+    <version>42.0</version>
+</Package>

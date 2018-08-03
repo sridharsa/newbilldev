@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaOpenNotifModal.evt</manifest_name>
+		<manifest_xml>
+			<!-- * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ * -->
+			<aura:event
+				type="COMPONENT"
+				description="Show or hide the modal component">
+				<aura:attribute
+					name="modalId"
+					type="String"/>
+				<aura:attribute
+					name="open"
+					type="Boolean"/>
+			</aura:event>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaOpenNotifModal.evt-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Open Notification Modal Event</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+</LightningBundle>

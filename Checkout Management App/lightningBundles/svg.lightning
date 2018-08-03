@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>svg.cmp</manifest_name>
+		<manifest_text>&lt;aura:component &gt;
+    &lt;aura:attribute name=&quot;id&quot; type=&quot;String&quot; description=&quot;ID of the SVG element&quot; /&gt;
+    &lt;aura:attribute name=&quot;class&quot; type=&quot;String&quot; description=&quot;CSS classname for the SVG element&quot; /&gt;
+    &lt;aura:attribute name=&quot;xlinkHref&quot; type=&quot;String&quot; description=&quot;SLDS icon path. Ex: /assets/icons/utility-sprite/svg/symbols.svg#download&quot; /&gt;
+    &lt;aura:attribute name=&quot;ariaHidden&quot; type=&quot;String&quot; default=&quot;true&quot; description=&quot;aria-hidden true or false. defaults to true&quot; /&gt;
+    &lt;aura:attribute name=&quot;isRendered&quot; type=&quot;Boolean&quot; default=&quot;false&quot; description=&quot;Set to true once the component has been added to the DOM.&quot;/&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>svg.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Component for rendering SVG icons</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>svgRenderer.js</manifest_name>
+		<manifest_text>({
+    render: function(component) {
+        this.superRender();
+        //grab attributes from the component markup
+        var classname = component.get(&quot;v.class&quot;);
+        var xlinkhref = component.get(&quot;v.xlinkHref&quot;);
+        var ariaHidden = component.get(&quot;v.ariaHidden&quot;);
+        var id = component.get(&quot;v.id&quot;);
+
+        //return an svg element w/ the attributes
+        var svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+        svg.setAttribute(&apos;class&apos;, classname);
+        svg.setAttribute(&apos;aria-hidden&apos;, ariaHidden);
+        // Integration Changes - needed for Sort component
+        svg.setAttribute(&apos;id&apos;, id);
+        //return an use element w/ the attributes
+        var u =  document.createElementNS(&apos;http://www.w3.org/2000/svg&apos;, &apos;use&apos;);
+        u.setAttributeNS(&apos;http://www.w3.org/1999/xlink&apos;,&apos;xlink:href&apos;, xlinkhref);
+        svg.appendChild(u);
+        return svg;
+    },
+    afterRender : function(component) {
+        this.superAfterRender();
+        component.set(&quot;v.isRendered&quot;, true);
+    }
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

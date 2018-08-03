@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaLoadLogoModal.cmp</manifest_name>
+		<manifest_text>&lt;!--
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ *--&gt;
+&lt;aura:component controller=&quot;sfcma.CMANotificationSettingsController&quot;&gt;
+    &lt;aura:registerEvent name=&quot;cmaOpenNotifModal&quot; type=&quot;sfcma:cmaOpenNotifModal&quot;/&gt;
+    &lt;aura:registerEvent name=&quot;cmaSaveLogo&quot; type=&quot;sfcma:cmaSaveLogo&quot;/&gt;
+    &lt;aura:attribute name=&quot;logo&quot; type=&quot;Object&quot;/&gt;
+
+    &lt;div aria-hidden=&quot;true&quot; role=&quot;dialog&quot; class=&quot;slds-modal--large slds-modal slds-fade-in-open &quot;&gt;
+        &lt;div class=&quot;slds-modal__container cma-modal-width&quot;&gt;
+            &lt;div class=&quot;slds-modal__header&quot;&gt;
+
+                &lt;h2 class=&quot;slds-text-heading--medium&quot;&gt;{!$Label.sfcma.cma_email_branding_subtitle}&lt;/h2&gt;
+                &lt;span&gt;{!$Label.sfcma.cma_email_branding_inline_text}&lt;/span&gt;
+
+                &lt;div class=&quot;slds-hide slds-notify-container&quot; aura:id=&quot;imageError&quot;&gt;
+                    &lt;div class=&quot;slds-notify slds-notify--toast slds-theme--error&quot; role=&quot;alert&quot;&gt;
+                        &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_error}&lt;/span&gt;
+                        &lt;button class=&quot;slds-button slds-button--icon-inverse slds-notify__close&quot; onclick=&quot;{!c.closeImageError}&quot;&gt;
+                            &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; ariaHidden=&quot;true&quot;/&gt;
+                            &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;div class=&quot;notify__content slds-grid&quot;&gt;
+                            &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#warning&quot; class=&quot;slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex&quot; ariaHidden=&quot;true&quot;/&gt;
+                            &lt;div class=&quot;slds-col slds-align-middle&quot;&gt;
+                                &lt;h2 class=&quot;slds-text-heading--small&quot;&gt;
+                                    {!$Label.sfcma.cma_logo_size_error}
+                                &lt;/h2&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class=&quot;slds-hide slds-notify-container&quot; aura:id=&quot;noLogoError&quot;&gt;
+                    &lt;div class=&quot;slds-notify slds-notify--toast slds-theme--error&quot; role=&quot;alert&quot;&gt;
+                        &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_error}&lt;/span&gt;
+                        &lt;button class=&quot;slds-button slds-button--icon-inverse slds-notify__close&quot; onclick=&quot;{!c.closeNoLogoError}&quot;&gt;
+                            &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; ariaHidden=&quot;true&quot;/&gt;
+                            &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;div class=&quot;notify__content slds-grid&quot;&gt;
+                            &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#warning&quot; class=&quot;slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex&quot; ariaHidden=&quot;true&quot;/&gt;
+                            &lt;div class=&quot;slds-col slds-align-middle&quot;&gt;
+                                &lt;h2 class=&quot;slds-text-heading--small&quot;&gt;{!$Label.sfcma.cma_no_logo_error}&lt;/h2&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;button class=&quot;slds-button slds-button--icon-inverse slds-modal__close&quot; onclick=&quot;{!c.closeLogoUploadModal}&quot;&gt;
+                    &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; ariaHidden=&quot;true&quot;/&gt;
+                    &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-modal__content slds-p-right--xx-large slds-p-left--xx-large slds-p-bottom--x-large slds-p-top--large&quot;&gt;
+                &lt;input type=&quot;file&quot; aura:id=&quot;logoInput&quot; accept=&quot;image/jpg,image/jpeg,image/png,image/gif&quot; onchange=&quot;{!c.showLogoPreview}&quot;/&gt;
+
+                &lt;div class=&quot;slds-m-top--large slds-text-body--small&quot;&gt;
+                    &lt;label&gt;{!$Label.sfcma.cma_image_preview}&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;slds-hide slds-container--small slds-m-bottom--small&quot; aura:id=&quot;logoPreview&quot;&gt;
+                    &lt;img aura:id=&quot;logoImagePreview&quot; src=&quot;#&quot; class=&quot;cma-logo-image&quot; /&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-modal__footer&quot;&gt;
+                &lt;div class=&quot;slds-x-small-buttons--horizontal&quot;&gt;
+                    &lt;button class=&quot;slds-button slds-button--neutral&quot; onclick=&quot;{!c.closeLogoUploadModal}&quot;&gt;{!$Label.sfcma.cma_logo_modal_cancel}&lt;/button&gt;
+                    &lt;button class=&quot;slds-button slds-button--neutral slds-button--brand&quot; onclick=&quot;{!c.saveLogo}&quot;&gt;{!$Label.sfcma.cma_logo_modal_save}&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-backdrop slds-backdrop--open&quot;&gt;&lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaLoadLogoModal.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Load Logo Modal Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaLoadLogoModal.css</manifest_name>
+		<manifest_text>.THIS .cma-modal-width {
+	max-width: 800px !important;
+}
+
+.THIS .cma-logo-image {
+    max-width: 200px;
+    max-height: 100px;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaLoadLogoModalController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    closeImageError : function(component, event, helper) {
+        helper.hideElement(component.find(&apos;imageError&apos;));
+    },
+    closeNoLogoError : function(component, event, helper) {
+        helper.hideElement(component.find(&apos;noLogoError&apos;));
+    },
+    closeLogoUploadModal : function(component, event, helper) {
+        helper.hideElement(component.find(&apos;imageError&apos;));
+        helper.hideElement(component.find(&apos;noLogoError&apos;));
+        component.find(&quot;logoInput&quot;).getElement().value = null;
+        component.set(&quot;v.logo&quot;,null);
+        helper.hideElement(component.find(&apos;logoPreview&apos;));
+        component.getEvent(&quot;cmaOpenNotifModal&quot;).setParams({&quot;modalId&quot; : &quot;cmaLogoUploadModal&quot;, &quot;open&quot; : false}).fire();
+    },
+    saveLogo : function(component, event, helper) {
+        var logoImage = component.get(&quot;v.logo&quot;);
+        if (logoImage) {
+
+            var action = component.get(&quot;c.saveEmailBrandingLogo&quot;);
+            action.setParams({ encodedLogoString : encodeURIComponent(logoImage)});
+            action.setCallback(this, function(response) {
+                if (response.getState() === &quot;SUCCESS&quot;) {
+                    $A.get(&quot;e.sfcma:cmaSaveLogo&quot;).setParams({&quot;logo&quot; : logoImage}).fire();
+                    component.set(&quot;v.logo&quot;,null);
+                    helper.hideElement(component.find(&apos;logoPreview&apos;));
+                    component.getEvent(&quot;cmaOpenNotifModal&quot;).setParams({&quot;modalId&quot; : &quot;cmaLogoUploadModal&quot;, &quot;open&quot; : false}).fire();
+                }
+            });
+            $A.enqueueAction(action);
+        }
+        else {
+            helper.showElement(component.find(&apos;noLogoError&apos;));
+            helper.hideElement(component.find(&apos;imageError&apos;));
+        }
+    },
+    showLogoPreview : function(component, event, helper) {
+        var input = component.find(&quot;logoInput&quot;).getElement();
+        if (input.files &amp;&amp; input.files[0]) {
+            var reader = new FileReader();
+            var fileSize = input.files[0].size;
+
+            reader.onload = function (e) {
+                if (fileSize &lt;= 123159) {
+                    var logo = component.find(&apos;logoImagePreview&apos;).getElement();
+                    logo.src = e.target.result;
+
+                    var logoImage = logo.src;
+                    component.set(&quot;v.logo&quot;,logoImage);
+                    helper.showElement(component.find(&apos;logoPreview&apos;));
+                    helper.hideElement(component.find(&apos;imageError&apos;));
+                    helper.hideElement(component.find(&apos;noLogoError&apos;));
+                }
+                else {
+                    helper.hideElement(component.find(&apos;logoPreview&apos;));
+                    helper.showElement(component.find(&apos;imageError&apos;));
+                    helper.hideElement(component.find(&apos;noLogoError&apos;));
+                    input.value = null;
+                }
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+})</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaLoadLogoModalHelper.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+	hideElement : function(element) {
+        element.getElement().classList.add(&quot;slds-hide&quot;);
+    },
+    showElement : function(element) {
+        element.getElement().classList.remove(&quot;slds-hide&quot;);
+    }
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

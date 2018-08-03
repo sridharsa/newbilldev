@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaEmailAddressesNotif.cmp</manifest_name>
+		<manifest_text>&lt;!--
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ *--&gt;
+&lt;aura:component &gt;
+    &lt;aura:registerEvent name=&quot;cmaOpenNotifModal&quot; type=&quot;sfcma:cmaOpenNotifModal&quot;/&gt;
+    &lt;aura:handler event=&quot;sfcma:cmaContactsAdded&quot; action=&quot;{!c.addContacts}&quot;/&gt;
+    &lt;aura:attribute name=&quot;mainEmail&quot; type=&quot;String&quot;/&gt;
+    &lt;aura:attribute name=&quot;numberOfOthers&quot; type=&quot;Integer&quot;/&gt;
+    
+    &lt;div class=&quot;slds-grid slds-wrap slds-container--fluid slds-p-top--large slds-p-right--large slds-p-bottom--xx-small slds-p-left--large&quot;&gt;
+        &lt;div class=&quot;slds-col slds-size--3-of-6&quot;&gt;
+            &lt;span class=&quot;slds-text-heading--small slds-m-right--xx-small&quot;&gt;{!$Label.sfcma.cma_email_addresses_notification_title}&lt;/span&gt;
+            &lt;div&gt;{!$Label.sfcma.cma_email_addresses_notification_inline_text}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slds-col slds-size--1-of-9 slds-container--right slds-m-top--x-small&quot;&gt;
+            &lt;a onclick=&quot;{!c.openEmailNotifModal}&quot;&gt;{!$Label.sfcma.cma_email_addresses_notification_action}&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slds-col slds-size--2-of-9 slds-container--right slds-text-align--center slds-m-right--large&quot;&gt;
+            {!v.mainEmail}
+            &lt;div class=&quot;{!(v.numberOfOthers &gt; 0)?&apos;&apos;:&apos;slds-hide&apos;}&quot;&gt;
+                + {!v.numberOfOthers}&amp;nbsp;{!$Label.sfcma.cma_email_other}&lt;span class=&quot;{!(v.numberOfOthers &gt; 1)?&apos;&apos;:&apos;slds-hide&apos;}&quot;&gt;s&lt;/span&gt;.
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaEmailAddressesNotif.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Email Addresses for Partner Notifications Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaEmailAddressesNotifController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    addContacts : function(component, event) {
+        var contacts = event.getParam(&quot;contacts&quot;);
+        if (contacts.length &gt; 0){
+            component.set(&quot;v.mainEmail&quot;,contacts[0].Email);
+            component.set(&quot;v.numberOfOthers&quot;,contacts.length - 1);
+        }
+        else {
+            component.set(&quot;v.mainEmail&quot;,&quot;&quot;);
+        }
+    },
+    openEmailNotifModal : function(component) {
+        component.getEvent(&quot;cmaOpenNotifModal&quot;).setParams({&quot;modalId&quot; : &quot;cmaEmailNotificationModal&quot;, &quot;open&quot; : true}).fire();
+    }
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

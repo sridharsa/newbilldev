@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaStripeAccountConnectedModal.cmp</manifest_name>
+		<manifest_text>&lt;!--
+    Copyright (c) 2016 Salesforce
+    @author v.nessi@salesforce.com
+--&gt;
+&lt;aura:component controller=&quot;sfcma.CMAStepsContainerController&quot;&gt;
+    &lt;aura:registerEvent name=&quot;cmpEvent&quot; type=&quot;sfcma:cmaStepCompletedEvent&quot;/&gt;
+    &lt;aura:registerEvent name=&quot;openWizardModalEvent&quot; type=&quot;sfcma:cmaOpenWizardModal&quot;/&gt;
+    &lt;div aria-hidden=&quot;true&quot; role=&quot;dialog&quot; class=&quot;slds-modal slds-fade-in-open &quot;&gt;
+        &lt;div class=&quot;slds-modal__container cma-modal-width&quot;&gt;
+            &lt;div class=&quot;slds-modal__header&quot;&gt;
+                &lt;h2 class=&quot;slds-text-heading--medium&quot;&gt;{!$Label.sfcma.cma_stripe_account_connected_title}&lt;/h2&gt;
+                &lt;button class=&quot;slds-button slds-button--icon-inverse slds-modal__close&quot; onclick=&quot;{!c.closeModal}&quot;&gt;
+                    &lt;sfcma:svg ariaHidden=&quot;true&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot;/&gt;
+                    &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-modal__content slds-p-right--xx-large slds-p-left--xx-large slds-p-bottom--x-large slds-p-top--large&quot;&gt;
+                &lt;div&gt;
+                    &lt;p&gt;{!$Label.sfcma.cma_stripe_account_connected_desc_line1}&lt;/p&gt;
+                    &lt;br&gt;&lt;/br&gt;
+                    &lt;p&gt;{!$Label.sfcma.cma_stripe_account_connected_desc_line2}&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-modal__footer&quot;&gt;
+                &lt;div class=&quot;slds-x-small-buttons--horizontal&quot;&gt;
+                    &lt;button class=&quot;slds-button slds-button--neutral&quot; onclick=&quot;{!c.closeModal}&quot;&gt;{!$Label.sfcma.cma_done_label}&lt;/button&gt;
+                    &lt;button class=&quot;slds-button slds-button--neutral slds-button--brand&quot; onclick=&quot;{!c.openImportDataModal}&quot;&gt;{!$Label.sfcma.cma_build_site_title}&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-backdrop slds-backdrop--open&quot;&gt;&lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaStripeAccountConnectedModal.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>34.0</apiVersion>
+				<description>Successfully connected with Stripe modal</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaStripeAccountConnectedModal.css</manifest_name>
+		<manifest_text>.THIS .cma-modal-width {
+	max-width: 800px !important;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaStripeAccountConnectedModalController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author v.nessi@salesforce.com
+ */
+({
+	closeModal : function() {
+		var appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+		appEvent.setParams({
+			&quot;modalIdToClose&quot; : &quot;modalStep1a&quot;
+		});
+		appEvent.fire();
+	},
+  	openImportDataModal : function(component) {
+		var appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+		appEvent.setParams({
+						&quot;modalId&quot; : &quot;buildSiteModal&quot;,
+			&quot;modalIdToClose&quot; : &quot;modalStep1a&quot;
+		});
+		appEvent.fire();
+		var action = component.get(&quot;c.setStep2Completed&quot;);
+		action.setCallback(this, function(response) {
+			var state = response.getState();
+			if (state === &quot;SUCCESS&quot;) {
+				var cmpEvent = $A.get(&quot;e.sfcma:cmaStepCompletedEvent&quot;);
+				cmpEvent.setParams({
+					&quot;stepCompleted&quot; : &apos;2&apos; });
+				cmpEvent.fire();
+			}
+		});
+		$A.enqueueAction(action);
+	}
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

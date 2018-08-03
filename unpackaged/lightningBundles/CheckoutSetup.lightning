@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>CheckoutSetup.app</manifest_name>
+		<manifest_text>&lt;aura:application access=&quot;GLOBAL&quot; extends=&quot;ltng:outApp&quot;&gt; 
+    &lt;aura:dependency resource=&quot;sfcma:cmaMainContainer&quot;/&gt;
+&lt;/aura:application&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>CheckoutSetup.app-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>App to host Checkout Setup</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+</LightningBundle>

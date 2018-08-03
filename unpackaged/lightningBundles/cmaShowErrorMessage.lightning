@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaShowErrorMessage.cmp</manifest_name>
+		<manifest_text>&lt;aura:component &gt;
+    &lt;aura:attribute name=&quot;isError&quot; type=&quot;Boolean&quot;/&gt;
+    &lt;aura:attribute name=&quot;errorMsg&quot; type=&quot;String&quot;/&gt;
+    &lt;aura:handler event=&quot;sfcma:cmaShowMsgErrorEvent&quot; action=&quot;{!c.showMsgError}&quot;/&gt;
+    &lt;aura:handler event=&quot;sfcma:cmaCloseMsgErrorEvent&quot; action=&quot;{!c.hideMsgError}&quot;/&gt;
+
+    &lt;div class=&quot;slds-hide slds-notify-container&quot; aura:id=&quot;importDataWarning&quot;&gt;
+        &lt;div class=&quot;slds-notify slds-notify--toast slds-theme--warning&quot; role=&quot;alert&quot;&gt;
+            &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_error}&lt;/span&gt;
+            &lt;button class=&quot;slds-button slds-button--icon-inverse slds-notify__close&quot; onclick=&quot;{!c.hideMsgError}&quot;&gt;
+                &lt;sfcma:svg ariaHidden=&quot;true&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot;/&gt;
+                &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;div class=&quot;notify__content slds-grid&quot;&gt;
+                &lt;sfcma:svg ariaHidden=&quot;true&quot; class=&quot;slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex&quot; xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#warning&quot;/&gt;
+                &lt;div class=&quot;slds-col slds-align-middle&quot;&gt;
+                    &lt;h2 class=&quot;slds-text-heading--small&quot;&gt;{!v.errorMsg}&lt;/h2&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-hide slds-notify-container&quot; aura:id=&quot;importDataError&quot;&gt;
+        &lt;div class=&quot;slds-notify slds-notify--toast slds-theme--error&quot; role=&quot;alert&quot;&gt;
+            &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_error}&lt;/span&gt;
+            &lt;button class=&quot;slds-button slds-button--icon-inverse slds-notify__close&quot; onclick=&quot;{!c.hideMsgError}&quot;&gt;
+                &lt;sfcma:svg ariaHidden=&quot;true&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot;/&gt;
+                &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;div class=&quot;notify__content slds-grid&quot;&gt;
+                &lt;sfcma:svg ariaHidden=&quot;true&quot; class=&quot;slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex&quot; xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#warning&quot;/&gt;
+                &lt;div class=&quot;slds-col slds-align-middle&quot;&gt;
+                    &lt;h2 class=&quot;slds-text-heading--small&quot;&gt;{!v.errorMsg}&lt;/h2&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaShowErrorMessage.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>34.0</apiVersion>
+				<description>Component to show error and warning messages dynamically in CMA</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaShowErrorMessageController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author scollazo@salesforce.com
+ */
+({
+	showMsgError : function(component, event) {
+		var isError = (event.getParam(&quot;isError&quot;) !== null) ? event.getParam(&quot;isError&quot;) : false ;
+        var msg = (event.getParam(&quot;msg&quot;) !== null) ? event.getParam(&quot;msg&quot;) : &quot;&quot; ;
+
+		if(isError){
+			var cmpTarget = component.find(&apos;importDataError&apos;);
+            $A.util.removeClass(cmpTarget, &apos;slds-hide&apos;);
+		}else{
+			var cmpTarget = component.find(&apos;importDataWarning&apos;);
+			$A.util.removeClass(cmpTarget, &apos;slds-hide&apos;);
+		}
+		component.set(&quot;v.errorMsg&quot;,msg);
+	},
+	hideMsgError : function(component, event, helper) {
+        helper.closeError(component);
+    }
+})</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaShowErrorMessageHelper.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author scollazo@salesforce.com
+ */
+({
+	closeError : function(component) {
+		var cmpWarningTarget = component.find(&apos;importDataWarning&apos;);
+		$A.util.addClass(cmpWarningTarget, &apos;slds-hide&apos;);
+
+		var cmpErrorTarget = component.find(&apos;importDataError&apos;);
+		$A.util.addClass(cmpErrorTarget, &apos;slds-hide&apos;);
+	}
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

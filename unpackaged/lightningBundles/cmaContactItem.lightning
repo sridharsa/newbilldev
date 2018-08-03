@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaContactItem.cmp</manifest_name>
+		<manifest_text>&lt;!--
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ *--&gt;
+&lt;aura:component &gt;
+    &lt;aura:registerEvent name=&quot;cmaSelectContact&quot; type=&quot;sfcma:cmaSelectContact&quot;/&gt;
+    &lt;aura:handler event=&quot;sfcma:cmaHighlightContactEvent&quot; action=&quot;{!c.highlightContact}&quot;/&gt;
+    &lt;aura:attribute name=&quot;contact&quot; type=&quot;Contact&quot;/&gt;
+
+    &lt;li class=&quot;slds-lookup__item&quot;&gt;
+        &lt;a role=&quot;option&quot; onclick=&quot;{!c.selectContact}&quot; aura:id=&quot;contactItem&quot;&gt;
+            &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/standard-sprite/svg/symbols.svg#contact&quot; class=&quot;slds-icon slds-icon-standard-contact slds-icon--small&quot; ariaHidden=&quot;true&quot;/&gt;
+            {!v.contact.Name}&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaContactItem.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Contact Item Lighting Component for the Add Contacts Modal</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaContactItem.css</manifest_name>
+		<manifest_text>.THIS .cma-contact-selected {
+    outline: 0;
+    background-color: #f4f6f9;
+    color: #16325c;
+    text-decoration: none; 
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaContactItemController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    selectContact : function(component) {
+        component.getEvent(&quot;cmaSelectContact&quot;).setParams({&quot;contact&quot; : component.get(&quot;v.contact&quot;), &quot;select&quot; : true}).fire();
+    },
+    highlightContact : function(component, event) {
+        if (event.getParam(&quot;contactId&quot;) === component.get(&quot;v.contact&quot;).Id){
+            $A.util.addClass(component.find(&quot;contactItem&quot;), &apos;cma-contact-selected&apos;);
+        }
+        else {
+            $A.util.removeClass(component.find(&quot;contactItem&quot;), &apos;cma-contact-selected&apos;);
+        }
+    }
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

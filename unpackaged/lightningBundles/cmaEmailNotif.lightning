@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaEmailNotif.cmp</manifest_name>
+		<manifest_text>&lt;!--
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ *--&gt;
+&lt;aura:component controller=&quot;sfcma.CMANotificationSettingsController&quot;&gt;
+    &lt;aura:attribute name=&quot;headerText&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;bodyText&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;actionText&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;isEnabled&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;fieldName&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;templateId&quot; type=&quot;Id&quot; /&gt;
+
+    &lt;div class=&quot;slds-grid slds-wrap slds-container--fluid slds-p-top--large slds-p-right--large slds-p-bottom--xx-small slds-p-left--large&quot;&gt;
+        &lt;div class=&quot;slds-col slds-size--6-of-8&quot;&gt;
+            &lt;span class=&quot;slds-text-heading--small slds-m-right--xx-small&quot;&gt;{!v.headerText}&lt;/span&gt;
+            &lt;div&gt;{!v.bodyText}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slds-col slds-size--1-of-9 slds-container--right slds-m-top--x-small&quot;&gt;&lt;a href=&quot;{!&apos;/&apos;+v.templateId}&quot; target=&quot;_blank&quot;&gt;{!v.actionText}&lt;/a&gt;&lt;/div&gt;
+        &lt;div class=&quot;slds-col slds-size--1-of-9 slds-container--right cma-toggle slds-m-right--xx-large&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; checked=&quot;{!v.isEnabled}&quot; defaultchecked=&quot;true&quot; id=&quot;{!v.fieldName}&quot; aura:id=&quot;input&quot;
+                   class=&quot;cma-uiInput cma-uiInputCheckbox cma-uiInput--default cma-uiInput--checkbox&quot;
+                   onchange=&quot;{!c.saveValue}&quot;/&gt;
+            &lt;label for=&quot;{!v.fieldName}&quot; class=&quot;cma-uiLabel&quot;&gt;
+                &lt;div class=&quot;cma-switch&quot;&gt;&lt;/div&gt;
+            &lt;/label&gt;
+            &lt;div class=&quot;cma-switchText cma-enabled&quot; aria-hidden=&quot;true&quot;&gt;{!$Label.sfcma.cma_notification_enabled}&lt;/div&gt;
+            &lt;div class=&quot;cma-switchText cma-disabled&quot; aria-hidden=&quot;true&quot;&gt;{!$Label.sfcma.cma_notification_disabled}&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaEmailNotif.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Email Notification Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaEmailNotifController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+	saveValue : function(component) {
+		var action = component.get(&quot;c.saveNotificationSetting&quot;);
+        var fieldName = component.get(&quot;v.fieldName&quot;);
+        action.setParams({ fieldName : fieldName,
+                           value : component.find(&quot;input&quot;).getElement().checked});
+        $A.enqueueAction(action);
+	}
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

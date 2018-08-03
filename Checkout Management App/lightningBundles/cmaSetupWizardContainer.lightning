@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaSetupWizardContainer.cmp</manifest_name>
+		<manifest_text>&lt;!--
+    Copyright (c) 2016 Salesforce
+    @author v.nessi@salesforce.com
+--&gt;
+&lt;aura:component controller=&quot;sfcma.CMAImportDataController&quot;&gt;
+    &lt;aura:registerEvent name=&quot;cmaImportDataErrorEvent&quot; type=&quot;sfcma:cmaImportDataErrorEvent&quot;/&gt;
+    &lt;aura:handler event=&quot;sfcma:cmaOpenWizardModal&quot; action=&quot;{!c.openCloseModal}&quot;/&gt;
+    &lt;aura:handler name=&quot;cmaImportingStripeData&quot; event=&quot;sfcma:cmaImportingStripeData&quot; action=&quot;{!c.importingStripeData}&quot;/&gt;
+    &lt;aura:attribute name=&quot;importStateInterval&quot; type=&quot;Object&quot;/&gt;
+    &lt;aura:attribute name=&quot;closedImportInProgress&quot; type=&quot;Boolean&quot; default=&quot;false&quot;/&gt;
+
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;modalStep1&quot;&gt;
+        &lt;sfcma:cmaConnectStripeModal /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;modalStep1a&quot;&gt;
+        &lt;sfcma:cmaStripeAccountConnectedModal /&gt;
+    &lt;/div&gt;
+    &lt;div  class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;changeStripeAccountModal&quot;&gt;
+        &lt;sfcma:cmaChangeStripeAccountModal /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;modalStep2&quot;&gt;
+        &lt;sfcma:cmaImportDataModal /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;modalStep2a&quot;&gt;
+        &lt;sfcma:cmaImportInProgressModal /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;modalStep2b&quot;&gt;
+        &lt;sfcma:cmaImportCompleteModal /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;reImportDataModal&quot;&gt;
+        &lt;sfcma:cmaReImportDataModal /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;confirmReImportDataModal&quot;&gt;
+        &lt;sfcma:cmaConfirmReImportDataModal /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;modalStep4&quot;&gt;
+        &lt;sfcma:cmaLearnAboutDashboardModal /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;buildSiteModal&quot;&gt;
+        &lt;sfcma:cmaBuildSiteModal /&gt;
+    &lt;/div&gt;
+    &lt;div aria-hidden=&quot;false&quot; id=&quot;mainContainer&quot;&gt;
+        &lt;div class=&quot;cma-header slds-page-header&quot; role=&quot;banner&quot;&gt;
+            &lt;div class=&quot;slds-text-heading--medium slds-text-align--center slds-text-longform slds-m-bottom--x-small&quot;&gt;{!$Label.sfcma.cma_checkout_management_app}&lt;/div&gt;
+            &lt;div class=&quot;cma-thin-letter slds-text-body--regular slds-text-align--center slds-text-longform slds-m-bottom--xx-large&quot;&gt;{!$Label.sfcma.cma_checkout_management_app_description}&lt;/div&gt;
+            &lt;span class=&quot;cma-header-symbol&quot; id=&quot;svg-cma-logo&quot;&gt;
+                &lt;sfcma:svg id=&quot;cma-logo&quot; class=&quot;cma-logo&quot; xlinkHref=&quot;{!$Resource.sfcma__SVG_symbols + &apos;/#cma-logo&apos;}&quot; ariaHidden=&quot;true&quot;/&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;sfcma:cmaStepsContainer /&gt;
+
+    &lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaSetupWizardContainer.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Setup Wizard Container Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaSetupWizardContainer.css</manifest_name>
+		<manifest_text>.THIS .cma-header {
+  background-color:rgb(21, 137, 238)!important;
+  color:white;
+}
+
+.THIS .cma-thin-letter {
+  font-weight: 100;
+}
+
+.THIS .cma-header-symbol {
+    display:block!important;
+    margin:auto;
+    margin-bottom: -2.5rem;
+    width: 4rem;
+}
+
+.THIS .cma-logo {
+    width:4rem;
+    height:4rem;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaSetupWizardContainerController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author v.nessi@salesforce.com
+ */
+ ({
+    openCloseModal : function(component, event, helper) {
+        var modalId = (event.getParam(&quot;modalId&quot;) !== null) ? event.getParam(&quot;modalId&quot;) : &quot;&quot; ;
+        var modalIdToClose = (event.getParam(&quot;modalIdToClose&quot;) !== null) ? event.getParam(&quot;modalIdToClose&quot;) : &quot;&quot; ;
+
+        helper.openCloseModal(component, modalId, modalIdToClose);
+    },
+    importingStripeData : function(component, event, helper) {
+        var interval = window.setInterval(
+            $A.getCallback(function() {
+                var action = component.get(&quot;c.getImportStripeDataState&quot;);
+                action.setCallback(this, function(response) {
+                    if (response.getState() === &quot;SUCCESS&quot;) {
+                        var importDataState = response.getReturnValue();
+                        if (!importDataState.isRunning &amp;&amp; !importDataState.hasError &amp;&amp; !importDataState.hasWarning){
+                            var appEvent = $A.get(&quot;e.sfcma:cmaStepCompletedEvent&quot;);
+                            appEvent.setParams({
+                                &quot;stepCompleted&quot; : &quot;3&quot;
+                            }).fire();
+                            if (!component.get(&quot;v.closedImportInProgress&quot;)){
+                                helper.openCloseModal(component, &quot;modalStep2b&quot;, &quot;modalStep2a&quot;);
+                            }
+                            window.clearInterval(component.get(&quot;v.importStateInterval&quot;));
+
+                        }
+                        else if (!importDataState.isRunning &amp;&amp; (importDataState.hasError || importDataState.hasWarning)){
+                            if (!component.get(&quot;v.closedImportInProgress&quot;)){
+                                if(importDataState.hasWarning){
+                                    var appEvent = $A.get(&quot;e.sfcma:cmaStepCompletedEvent&quot;);
+                                    appEvent.setParams({
+                                        &quot;stepCompleted&quot; : &quot;3&quot;
+                                    }).fire();
+                                }
+                                $A.get(&quot;e.sfcma:cmaImportDataErrorEvent&quot;).setParams({totalRecords: importDataState.totalRecords,
+                                    totalRecordsFailure:importDataState.totalFailureRecords,
+                                    isError:importDataState.hasError}).fire();
+                                helper.openCloseModal(component, &quot;reImportDataModal&quot;, &quot;modalStep2a&quot;);
+                            }
+                            window.clearInterval(component.get(&quot;v.importStateInterval&quot;));
+                        }
+                    }
+                });
+                $A.enqueueAction(action);
+            }), 5000); 
+        component.set(&quot;v.importStateInterval&quot;,interval);
+    }
+})</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaSetupWizardContainerHelper.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author v.nessi@salesforce.com
+ */
+({
+	openCloseModal : function(component, modalId, modalIdToClose) {
+		if(modalIdToClose !== &quot;&quot;) {
+			var cmpTargetToClose = component.find(modalIdToClose);
+			$A.util.addClass(cmpTargetToClose, &apos;slds-hide&apos;);
+		}
+
+		if(modalId !== &quot;&quot;) {
+			var cmpTarget = component.find(modalId);
+			$A.util.removeClass(cmpTarget, &apos;slds-hide&apos;);
+		}
+
+        if (modalId === &quot;modalStep2a&quot;) {
+            component.set(&quot;v.closedImportInProgress&quot;,false);
+        }
+        if (modalIdToClose === &quot;modalStep2a&quot;){
+            component.set(&quot;v.closedImportInProgress&quot;,true);
+        }
+	}
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

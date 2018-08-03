@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaAddContactsModal.cmp</manifest_name>
+		<manifest_text>&lt;!--
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ *--&gt;
+&lt;aura:component controller=&quot;sfcma.CMAAddContactsController&quot;&gt;
+	&lt;aura:dependency resource=&quot;force:createRecord&quot; type=&quot;EVENT&quot;/&gt;
+    &lt;aura:registerEvent name=&quot;cmaOpenNotifModal&quot; type=&quot;sfcma:cmaOpenNotifModal&quot;/&gt;
+    &lt;aura:registerEvent name=&quot;cmaContactsAdded&quot; type=&quot;sfcma:cmaContactsAdded&quot;/&gt;
+    &lt;aura:registerEvent name=&quot;cmaHighlightContactEvent&quot; type=&quot;sfcma:cmaHighlightContactEvent&quot;/&gt;
+    &lt;aura:handler name=&quot;cmaSelectContact&quot; event=&quot;sfcma:cmaSelectContact&quot; action=&quot;{!c.selectContact}&quot;/&gt;
+    &lt;aura:attribute name=&quot;contacts&quot; type=&quot;Contact[]&quot;/&gt;
+    &lt;aura:attribute name=&quot;selectedContacts&quot; type=&quot;Contact[]&quot;/&gt;
+    &lt;aura:attribute name=&quot;showedContacts&quot; type=&quot;Contact[]&quot;/&gt;
+    &lt;aura:attribute name=&quot;selectedIndex&quot; type=&quot;Integer&quot; default=&quot;-1&quot;/&gt;
+    
+    &lt;div aria-hidden=&quot;true&quot; role=&quot;dialog&quot; class=&quot;slds-modal--large slds-modal slds-fade-in-open &quot; onclick=&quot;{!c.toggleBox}&quot;&gt;
+        &lt;div class=&quot;slds-modal__container cma-modal-width &quot;&gt;
+            &lt;div class=&quot;slds-modal__header&quot;&gt;
+                &lt;h2 class=&quot;slds-text-heading--medium&quot;&gt;{!$Label.sfcma.cma_addresses_partner_notifications}&lt;/h2&gt;
+                &lt;span&gt;{!$Label.sfcma.cma_addresses_partner_notifications_inline}&lt;/span&gt;
+                &lt;button class=&quot;slds-button slds-button--icon-inverse slds-modal__close&quot; onclick=&quot;{!c.closeEmailNotifModal}&quot;&gt;
+                    &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; ariaHidden=&quot;true&quot;/&gt;
+                    &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-modal__content slds-p-right--xx-large slds-p-left--xx-large slds-p-bottom--x-large slds-p-top--large cma-modal-content&quot;&gt;
+                
+                &lt;div class=&quot;slds-lookup slds-is-open&quot; data-select=&quot;multi&quot; data-scope=&quot;single&quot; data-typeahead=&quot;true&quot; onkeyup=&quot;{!c.changeSelectedIndex}&quot;&gt;
+                    &lt;div class=&quot;slds-form-element&quot;&gt;
+                        &lt;label class=&quot;slds-form-element__label&quot; for=&quot;lookup&quot;&gt;{!$Label.sfcma.cma_addresses_contact_name}&lt;/label&gt;
+                        &lt;div class=&quot;slds-form-element__control slds-input-has-icon slds-input-has-icon--right&quot;&gt;
+                            &lt;input aura:id=&quot;contactLookup&quot; id=&quot;contactLookup&quot; class=&quot;slds-input&quot; type=&quot;text&quot; aria-autocomplete=&quot;list&quot; role=&quot;combobox&quot; aria-expanded=&quot;true&quot; aria-activedescendant=&quot;&quot; placeholder=&quot;{!$Label.sfcma.cma_contact_input_placeholder}&quot; onclick=&quot;{!c.showContactListBox}&quot; onkeyup=&quot;{!c.searchContact}&quot;/&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;slds-hide cma-contact-box&quot; aura:id=&quot;contactListBox&quot; id=&quot;contactListBox&quot;&gt;
+                        &lt;div class=&quot;slds-lookup__menu&quot; role=&quot;listbox&quot;&gt;
+                            &lt;ul class=&quot;slds-lookup__list&quot; role=&quot;presentation&quot; aura:id=&quot;contactList&quot;&gt;
+                                &lt;aura:iteration items=&quot;{!v.showedContacts}&quot; var=&quot;contact&quot; indexVar=&quot;index&quot;&gt;
+                                    	&lt;sfcma:cmaContactItem contact=&quot;{!contact}&quot;/&gt;
+                                &lt;/aura:iteration&gt; 
+                            &lt;/ul&gt;
+                            &lt;div class=&quot;slds-lookup__item&quot;&gt;
+                                &lt;button class=&quot;slds-button&quot; aura:id=&quot;addContactButton&quot; onclick=&quot;{!c.navigateToAddContact}&quot;&gt;
+                                    &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#add&quot; class=&quot;slds-icon slds-icon-text-default slds-icon--small&quot; ariaHidden=&quot;true&quot;/&gt;
+                                    {!$Label.sfcma.cma_add_contacts}
+                                &lt;/button&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                
+                &lt;div class=&quot;slds-pill__container cma-pill-container&quot; aura:id=&quot;contactPillsContainer&quot;&gt;
+                    &lt;aura:iteration items=&quot;{!v.selectedContacts}&quot; var=&quot;contact&quot;&gt;
+                        &lt;sfcma:cmaContactPill contact=&quot;{!contact}&quot;/&gt;
+                    &lt;/aura:iteration&gt;         
+                &lt;/div&gt;
+                
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-modal__footer&quot;&gt;
+                &lt;div class=&quot;slds-x-small-buttons--horizontal&quot;&gt;
+                    &lt;button class=&quot;slds-button slds-button--neutral&quot; onclick=&quot;{!c.closeEmailNotifModal}&quot;&gt;{!$Label.sfcma.cma_cancel}&lt;/button&gt;
+                    &lt;button class=&quot;slds-button slds-button--neutral slds-button--brand&quot; onclick=&quot;{!c.saveContacts}&quot;&gt;{!$Label.sfcma.cma_save}&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-backdrop slds-backdrop--open&quot;&gt;&lt;/div&gt;
+	
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaAddContactsModal.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Add Contacts Modal Lightning Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaAddContactsModal.css</manifest_name>
+		<manifest_text>.THIS .cma-modal-width {
+	max-width: 800px !important;
+}
+
+.THIS .cma-contact-box {
+	z-index: 100 !important;
+}
+
+.THIS .cma-modal-content {
+	overflow: visible !important;
+	overflow-y: visible !important;
+}
+
+.THIS .cma-pill-container {
+	border: 0px !important;
+}
+
+.THIS .cma-selected {
+    outline: 0 !important;
+    background-color: #f4f6f9 !important;
+    color: #16325c !important;
+    text-decoration: none !important; 
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaAddContactsModalController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    toggleBox : function(component, event, helper) {
+        if (event.target.id !== &quot;contactListBox&quot; &amp;&amp; event.target.id !== &quot;contactLookup&quot;) {
+            helper.hideElement(component.find(&apos;contactListBox&apos;));
+        }
+        component.find(&apos;contactLookup&apos;).getElement().focus();
+    },
+    closeEmailNotifModal : function(component) {
+        component.set(&quot;v.showedContacts&quot;,[]);
+        component.find(&apos;contactLookup&apos;).getElement().value = &apos;&apos;;
+        component.set(&quot;v.selectedContacts&quot;,component.get(&quot;v.contacts&quot;).slice(0));
+        component.getEvent(&quot;cmaOpenNotifModal&quot;).setParams({&quot;modalId&quot; : &quot;cmaEmailNotificationModal&quot;, &quot;open&quot; : false}).fire();
+    },
+    showContactListBox : function(component, event, helper) {
+        helper.showElement(component.find(&apos;contactListBox&apos;));
+    },
+    hideContactListBox : function(component, event, helper) {
+        helper.hideElement(component.find(&apos;contactListBox&apos;));
+    },
+    searchContact : function(component, event, helper) {
+        helper.showElement(component.find(&apos;contactListBox&apos;));
+        var contactName = component.find(&apos;contactLookup&apos;).getElement().value;
+        if (contactName &amp;&amp; contactName.length &gt; 1 &amp;&amp; event.keyCode !== 38 &amp;&amp; event.keyCode !== 40 &amp;&amp; event.keyCode !== 13) {
+            var action = component.get(&quot;c.getContacts&quot;);
+            action.setParams({ name : contactName});
+            action.setCallback(this, function(response) {
+                if (response.getState() === &quot;SUCCESS&quot;) {
+                    helper.filterContacts(component,response.getReturnValue());
+                    component.set(&quot;v.selectedIndex&quot;,-1);
+                    $A.util.removeClass(component.find(&quot;addContactButton&quot;), &apos;cma-selected&apos;);
+                }
+            });
+            $A.enqueueAction(action);
+        }
+    },
+    selectContact : function(component, event, helper) {
+        var contact = event.getParam(&quot;contact&quot;);
+        var select = event.getParam(&quot;select&quot;);
+        helper.selectGivenContact(component,contact,select);
+    },
+    saveContacts : function(component) {
+        var action = component.get(&quot;c.setContacts&quot;);
+        action.setParams({ contacts : component.get(&quot;v.selectedContacts&quot;)});
+        action.setCallback(this, function(response) {
+            if (response.getState() === &quot;SUCCESS&quot;) {
+                component.set(&quot;v.showedContacts&quot;,[]);
+                component.set(&quot;v.contacts&quot;,component.get(&quot;v.selectedContacts&quot;).slice(0));
+                component.find(&apos;contactLookup&apos;).getElement().value = &apos;&apos;;
+                $A.get(&quot;e.sfcma:cmaContactsAdded&quot;).setParams({&quot;contacts&quot; : component.get(&quot;v.selectedContacts&quot;)}).fire();
+                component.getEvent(&quot;cmaOpenNotifModal&quot;).setParams({&quot;modalId&quot; : &quot;cmaEmailNotificationModal&quot;, &quot;open&quot; : false}).fire();
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    changeSelectedIndex : function(component, event, helper){
+        var selected = component.get(&quot;v.selectedIndex&quot;);
+        var showedContacts = component.get(&quot;v.showedContacts&quot;);
+        if (event.keyCode === 38 || event.keyCode === 40) {
+            if (event.keyCode === 38 &amp;&amp; selected &gt; 0) {
+                selected--;
+            }
+            else if (event.keyCode === 40 &amp;&amp; selected &lt; showedContacts.length) {
+                selected++;
+            }
+            component.set(&quot;v.selectedIndex&quot;,selected);
+            if (selected &lt; showedContacts.length) {
+                $A.get(&quot;e.sfcma:cmaHighlightContactEvent&quot;).setParams({&quot;contactId&quot; : showedContacts[selected].Id}).fire();
+                $A.util.removeClass(component.find(&quot;addContactButton&quot;), &apos;cma-selected&apos;);
+            }
+            else {
+                $A.get(&quot;e.sfcma:cmaHighlightContactEvent&quot;).setParams({&quot;contactId&quot; : null}).fire();
+                $A.util.addClass(component.find(&quot;addContactButton&quot;), &apos;cma-selected&apos;);
+            }
+            helper.showElement(component.find(&apos;contactListBox&apos;));
+        }
+        else if (event.keyCode === 13 &amp;&amp; selected &gt; -1 &amp;&amp; selected &lt; showedContacts.length) {
+            helper.selectGivenContact(component,component.get(&quot;v.showedContacts&quot;)[selected],true);
+            component.set(&quot;v.selectedIndex&quot;,-1);
+        }
+        else if (event.keyCode === 13 &amp;&amp; selected === showedContacts.length){
+            component.find(&quot;addContactButton&quot;).getElement().click();
+        }
+    },
+    navigateToAddContact : function(component, event, helper) {
+        if (helper.isLightningExperience()){
+            sforce.one.createRecord(&quot;Contact&quot;);
+        }else {
+            window.location.href = &apos;/003/e&apos;;
+        }
+    }
+})</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaAddContactsModalHelper.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    hideElement : function(element) {
+        element.getElement().classList.add(&quot;slds-hide&quot;);
+    },
+    showElement : function(element) {
+        element.getElement().classList.remove(&quot;slds-hide&quot;);
+    },
+    remove : function(element, list) {
+        var index = -1;
+        for (var i in list) {
+            if (list[i].Id === element.Id) {
+                index = i;
+                break;
+            }
+        }
+        if (index &gt; -1) {
+            list.splice(index, 1);
+        }
+        return list;
+    },
+    filterContacts : function(component,contacts) {
+        var showedContacts = contacts;
+        var selectedContacts = component.get(&quot;v.selectedContacts&quot;);
+        for (var c in selectedContacts) {
+            this.remove(selectedContacts[c],showedContacts);
+        }
+        component.set(&quot;v.showedContacts&quot;,showedContacts);
+    },
+    selectGivenContact : function(component, contact, select) {
+        var selectedContacts = component.get(&quot;v.selectedContacts&quot;);
+        var showedContacts = component.get(&quot;v.showedContacts&quot;);
+        if (select) {
+            selectedContacts.push(contact);
+            showedContacts = this.remove(contact,showedContacts);
+            this.hideElement(component.find(&apos;contactListBox&apos;));
+        }
+        else {
+            selectedContacts = this.remove(contact,selectedContacts);
+            showedContacts.push(contact);
+        }
+        component.set(&quot;v.selectedContacts&quot;,selectedContacts);
+        component.set(&quot;v.showedContacts&quot;,showedContacts);
+    },
+    isLightningExperience : function() {
+        return((typeof sforce != &apos;undefined&apos;) &amp;&amp; sforce);
+    }
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

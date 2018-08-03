@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaOpenWizardModal.evt</manifest_name>
+		<manifest_xml>
+			<aura:event
+				type="APPLICATION"
+				description="Event to open modals that reside in Wizard Steps page">
+				<aura:attribute
+					name="modalId"
+					type="String"
+					default=""/>
+				<aura:attribute
+					name="modalIdToClose"
+					type="String"
+					default=""/>
+			</aura:event>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaOpenWizardModal.evt-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>34.0</apiVersion>
+				<description>Event to open Modals resides in Setup Wizard</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+</LightningBundle>

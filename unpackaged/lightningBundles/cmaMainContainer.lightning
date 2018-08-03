@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaMainContainer.cmp</manifest_name>
+		<manifest_text>&lt;!--
+    Copyright (c) 2016 Salesforce
+    @author v.nessi@salesforce.com
+--&gt;
+&lt;aura:component &gt;
+    &lt;ltng:require styles=&quot;/resource/sfcma__SLDS/assets/styles/salesforce-lightning-design-system-ltng.css&quot;/&gt;
+    &lt;aura:handler name=&quot;cmaOpenNotificationContainer&quot; event=&quot;sfcma:cmaOpenNotificationContainerEvent&quot; action=&quot;{!c.showNotificationContainer}&quot;/&gt;
+    
+    &lt;div class=&quot;slds&quot;&gt;
+        &lt;div aura:id=&quot;cmaSetupWizard&quot;&gt;
+            &lt;sfcma:cmaSetupWizardContainer /&gt;
+        &lt;/div&gt;
+        &lt;div aura:id=&quot;cmaNotificationSettings&quot; class=&quot;slds-hide&quot;&gt;
+            &lt;sfcma:cmaNotificationContainer /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaMainContainer.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Main Container Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaMainContainerController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author v.nessi@salesforce.com
+ */
+({
+    showNotificationContainer : function(component, event) {
+        var cmpWizard = component.find(&apos;cmaSetupWizard&apos;);
+        var cmpNotif = component.find(&apos;cmaNotificationSettings&apos;);
+        if (event.getParam(&quot;open&quot;)){
+            $A.util.addClass(cmpWizard, &apos;slds-hide&apos;);
+            $A.util.removeClass(cmpNotif, &apos;slds-hide&apos;);
+        }
+        else {
+            $A.util.removeClass(cmpWizard, &apos;slds-hide&apos;);
+            $A.util.addClass(cmpNotif, &apos;slds-hide&apos;);
+        }
+    }
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

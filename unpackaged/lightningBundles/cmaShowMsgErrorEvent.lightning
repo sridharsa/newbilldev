@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaShowMsgErrorEvent.evt</manifest_name>
+		<manifest_xml>
+			<!-- Copyright (c) 2016 Salesforce
+    @author scollazo@salesforce.com -->
+			<aura:event
+				type="APPLICATION"
+				description="Show Error/Warning Msg on Msg Error Display Component depending on isWarning flag">
+				<aura:attribute
+					name="isError"
+					type="Boolean"
+					description="If the error event belong to a error msg we set this on true"/>
+				<aura:attribute
+					name="msg"
+					type="String"
+					description="Msg to Display in component that handles this event"/>
+			</aura:event>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaShowMsgErrorEvent.evt-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>34.0</apiVersion>
+				<description>Event fired to display a message or warning error and pass msg dynamically from another controller.</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+</LightningBundle>

@@ -1,0 +1,1452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>ScheduledNotificationSender_job_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The scheduled apex job name ScheduledNotificationSender will use.</shortDescription>
+        <value>CMA Scheduled Notifications</value>
+    </labels>
+    <labels>
+        <fullName>click_subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Composite with another label to instruct a user to click something.</shortDescription>
+        <value>Click {0}.</value>
+    </labels>
+    <labels>
+        <fullName>cma_about_1_min</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Time that will take to complete the setup step</shortDescription>
+        <value>About 1:00 min</value>
+    </labels>
+    <labels>
+        <fullName>cma_about_2_mins</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Time that will take to complete the setup step</shortDescription>
+        <value>About 2:00 mins</value>
+    </labels>
+    <labels>
+        <fullName>cma_active</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Active</shortDescription>
+        <value>Active</value>
+    </labels>
+    <labels>
+        <fullName>cma_add</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>cma_add_contacts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Contacts</shortDescription>
+        <value>Add Contact</value>
+    </labels>
+    <labels>
+        <fullName>cma_add_endpoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>add endpoint</shortDescription>
+        <value>Add Endpoint …</value>
+    </labels>
+    <labels>
+        <fullName>cma_addresses_contact_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact Name</shortDescription>
+        <value>Contact Name</value>
+    </labels>
+    <labels>
+        <fullName>cma_addresses_partner_notifications</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Addresses for Partner Notifications</shortDescription>
+        <value>Email Addresses for Partner Notifications</value>
+    </labels>
+    <labels>
+        <fullName>cma_addresses_partner_notifications_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Addresses for Partner Notifications inline text</shortDescription>
+        <value>You can send email notifications to contacts within your organization.</value>
+    </labels>
+    <labels>
+        <fullName>cma_agree_terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agree Terms</shortDescription>
+        <value>Agree to the terms and conditions, and then register the domain.</value>
+    </labels>
+    <labels>
+        <fullName>cma_and_then_click</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>And then click</shortDescription>
+        <value>, and then click</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site Description</shortDescription>
+        <value>Create and configure a Force.com site so that new Stripe data automatically syncs to the Checkout Management App.</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_lead_in_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site Lead in text</shortDescription>
+        <value>Create and configure a Force.com site so that new Stripe data syncs to your Salesforce org automatically.</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_step1_link_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site Step 1 link text</shortDescription>
+        <value>Go to Setup → Develop → Sites</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_step1_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site Step 1 title</shortDescription>
+        <value>Set your Force.com Domain</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_step2_link_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site Step 2 link text</shortDescription>
+        <value>Go to Setup → Develop → Sites → New</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_step2_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site Step 2 title</shortDescription>
+        <value>Create the StripeCma Site</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_step3_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site Step 3 title</shortDescription>
+        <value>Configure the Site Guest User permissions</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_step4_link_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site Step 4 link text</shortDescription>
+        <value>Go to your Stripe Account → Account Settings → Webhooks</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_step4_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site Step 4 title</shortDescription>
+        <value>Add the Webhook Endpoint to your Stripe Account</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_step5_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site Step 5 title</shortDescription>
+        <value>You site is ready!</value>
+    </labels>
+    <labels>
+        <fullName>cma_build_site_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Build Site title</shortDescription>
+        <value>Set Up Data Syncing</value>
+    </labels>
+    <labels>
+        <fullName>cma_cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel button</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>cma_change</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Change label for action text of Setup Wizard</shortDescription>
+        <value>Change</value>
+    </labels>
+    <labels>
+        <fullName>cma_change_stripe_account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Change Stripe Account label</shortDescription>
+        <value>Change Stripe Account</value>
+    </labels>
+    <labels>
+        <fullName>cma_change_stripe_account_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Change Stripe Account description</shortDescription>
+        <value>If you change or disconnect the current Stripe account, any existing Stripe data remains in your org.</value>
+    </labels>
+    <labels>
+        <fullName>cma_change_stripe_account_modal_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>cma_change_stripe_account_modal_description</shortDescription>
+        <value>If you change or disconnect the current Stripe account, any existing Stripe data remains in your org.</value>
+    </labels>
+    <labels>
+        <fullName>cma_check_availability</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Check Availability</shortDescription>
+        <value>Check Availability</value>
+    </labels>
+    <labels>
+        <fullName>cma_checkout_management_app</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Checkout Management App Title</shortDescription>
+        <value>Checkout Management App</value>
+    </labels>
+    <labels>
+        <fullName>cma_checkout_management_app_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Checkout Management App Description</shortDescription>
+        <value>Notifications and subscriber insights, directly in your business org.</value>
+    </labels>
+    <labels>
+        <fullName>cma_click_site_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Click site label</shortDescription>
+        <value>Click the site label, and then click {0}.</value>
+    </labels>
+    <labels>
+        <fullName>cma_close</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close modal</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>cma_cma_meet_your_dashboard_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Wizard step 4 description</shortDescription>
+        <value>Get introduced to your dashboard and learn how to customize it for your needs.</value>
+    </labels>
+    <labels>
+        <fullName>cma_complete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Complete label for description text of Setup Wizard</shortDescription>
+        <value>Complete</value>
+    </labels>
+    <labels>
+        <fullName>cma_configure_notification_settings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Wizard step 3 title</shortDescription>
+        <value>Configure Notification Settings</value>
+    </labels>
+    <labels>
+        <fullName>cma_configure_notification_settings_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Wizard step 3 description</shortDescription>
+        <value>Send emails to customers or team members when activity occurs on your offerings.</value>
+    </labels>
+    <labels>
+        <fullName>cma_configure_site_access</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Configure Site Access</shortDescription>
+        <value>Configure Site Access</value>
+    </labels>
+    <labels>
+        <fullName>cma_confirm_reimport_data_modal_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Re-import Data modal title</shortDescription>
+        <value>Re-importing data overwrites the existing Stripe data in your org. Any changes you&apos;ve made to this data will be lost.</value>
+    </labels>
+    <labels>
+        <fullName>cma_confirm_reimport_data_modal_no_button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Re-import Data modal cancel button text</shortDescription>
+        <value>No, Nevermind</value>
+    </labels>
+    <labels>
+        <fullName>cma_confirm_reimport_data_modal_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Re-import Data modal title</shortDescription>
+        <value>Are you sure?</value>
+    </labels>
+    <labels>
+        <fullName>cma_confirm_reimport_data_modal_yes_button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Re-import Data modal accept button text</shortDescription>
+        <value>Yes, Re-import Data</value>
+    </labels>
+    <labels>
+        <fullName>cma_connect_stripe_account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Wizard step 1 title</shortDescription>
+        <value>Connect Stripe Account</value>
+    </labels>
+    <labels>
+        <fullName>cma_connect_stripe_account_button_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Connect Stripe Account button label</shortDescription>
+        <value>Connect Stripe Account</value>
+    </labels>
+    <labels>
+        <fullName>cma_connect_stripe_account_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Wizard step 1 description</shortDescription>
+        <value>Connect your Stripe account to this Salesforce org.</value>
+    </labels>
+    <labels>
+        <fullName>cma_connect_stripe_account_modal_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Connect Stripe Account Description</shortDescription>
+        <value>First, we need your live secret API key from Stripe. We use the key to establish a connection between Stripe and the Checkout Management App.</value>
+    </labels>
+    <labels>
+        <fullName>cma_connect_stripe_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Connect to stripe error message</shortDescription>
+        <value>Could not process Stripe Connection.  Please connect your account again.</value>
+    </labels>
+    <labels>
+        <fullName>cma_connect_to_stripe</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Connect to stripe</shortDescription>
+        <value>Connect the Site to Stripe</value>
+    </labels>
+    <labels>
+        <fullName>cma_contact_input_placeholder</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact Input Placeholder text</shortDescription>
+        <value>Select Contact</value>
+    </labels>
+    <labels>
+        <fullName>cma_contact_pill_remove</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact Pill Remove</shortDescription>
+        <value>Remove</value>
+    </labels>
+    <labels>
+        <fullName>cma_create_endpoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Endpoint</shortDescription>
+        <value>Create Endpoint</value>
+    </labels>
+    <labels>
+        <fullName>cma_create_site</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Site</shortDescription>
+        <value>Create a Force.com Site</value>
+    </labels>
+    <labels>
+        <fullName>cma_current_account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Current Account label</shortDescription>
+        <value>Current Account</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_auto_renewal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Auto-Renewal Reminder</shortDescription>
+        <value>Auto-Renewal Reminder</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_auto_renewal_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Auto-Renewal Reminder inline text</shortDescription>
+        <value>Send a reminder email 5 days before a customer&apos;s subscription is auto-renewed and billed.</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_cancelation_confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Cancelation Confirmation</shortDescription>
+        <value>Cancellation Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_cancelation_confirmation_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Cancelation Confirmation inline text</shortDescription>
+        <value>Send an email to the customer after a cancellation request has been processed.</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_cancellation_confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Cancellation Confirmation</shortDescription>
+        <value>Cancellation Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_cancellation_confirmation_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Cancellation Confirmation inline text</shortDescription>
+        <value>Send an email to the customer after a cancellation request has been processed.</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_email_notifications_inline_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Email Notifications inline text</shortDescription>
+        <value>You can edit the notifications available or add more.</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_email_notifications_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Email Notifications Title</shortDescription>
+        <value>Customer Email Notifications</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_free_trial_signup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Free Trial Signup</shortDescription>
+        <value>Free Trial Signup</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_free_trial_signup_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Free Trial Signup inline text</shortDescription>
+        <value>When a prospective customer signs up for a free trial, send an email introducing your company.</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_license_changes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer License Changes</shortDescription>
+        <value>License Changes</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_license_changes_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer License Changes inline text</shortDescription>
+        <value>When seats are added or removed from a customer&apos;s license, send an email confirming the changes.</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_payment_confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Payment Confirmation</shortDescription>
+        <value>Payment Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_payment_confirmation_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Payment Confirmation inline text</shortDescription>
+        <value>Send an email to the customer after a payment is processed.</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_payment_declined</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Payment Declined</shortDescription>
+        <value>Payment Declined</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_payment_declined_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Payment Declined inline text</shortDescription>
+        <value>If a customer&apos;s credit card is declined, send an email alerting the customer.</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_purchase_confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Purchase Confirmation</shortDescription>
+        <value>Purchase Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_purchase_confirmation_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Purchase Confirmation inline text</shortDescription>
+        <value>When a customer buys your offering, send a thank you email confirming the purchase.</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_refund_notification</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Refund Notification</shortDescription>
+        <value>Refund Notification</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_refund_notification_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Refund Notification inline text</shortDescription>
+        <value>Send an email to the customer after a refund has been processed.</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_trial_expiring</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Trial Expiring Soon</shortDescription>
+        <value>Trial Expiring Soon</value>
+    </labels>
+    <labels>
+        <fullName>cma_customer_trial_expiring_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Trial Expiring Soon inline text</shortDescription>
+        <value>Send a reminder email 1 day before a prospective customer&apos;s trial expires that explains how to purchase your offering.</value>
+    </labels>
+    <labels>
+        <fullName>cma_default_web_address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default Web Address</shortDescription>
+        <value>Default Web Address</value>
+    </labels>
+    <labels>
+        <fullName>cma_disconnect_current_account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Disconnect Current Account label</shortDescription>
+        <value>Disconnect Current Account</value>
+    </labels>
+    <labels>
+        <fullName>cma_do_it</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do it used for Setp Wizard lightning component</shortDescription>
+        <value>Do it</value>
+    </labels>
+    <labels>
+        <fullName>cma_done</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Done button text</shortDescription>
+        <value>Done</value>
+    </labels>
+    <labels>
+        <fullName>cma_done_button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Done</shortDescription>
+        <value>Done</value>
+    </labels>
+    <labels>
+        <fullName>cma_done_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Done label</shortDescription>
+        <value>Done</value>
+    </labels>
+    <labels>
+        <fullName>cma_edit_assignments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Assignments</shortDescription>
+        <value>Edit Assignments</value>
+    </labels>
+    <labels>
+        <fullName>cma_email_addresses_notification_action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Addresses for Partner Notification Action text</shortDescription>
+        <value>View/Edit</value>
+    </labels>
+    <labels>
+        <fullName>cma_email_addresses_notification_inline_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Addresses for Partner Notification inline text</shortDescription>
+        <value>These addresses receive any partner notifications you&apos;ve enabled.</value>
+    </labels>
+    <labels>
+        <fullName>cma_email_addresses_notification_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Addresses for Partner Notification Title</shortDescription>
+        <value>Email Addresses for Partner Notifications</value>
+    </labels>
+    <labels>
+        <fullName>cma_email_branding_inline_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Email Branding Inline Text</shortDescription>
+        <value>Your logo must be a JPG, GIF, or PNG image.</value>
+    </labels>
+    <labels>
+        <fullName>cma_email_branding_optional</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Email Branding optional text</shortDescription>
+        <value>(optional)</value>
+    </labels>
+    <labels>
+        <fullName>cma_email_branding_subtitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Email Branding Subtitle</shortDescription>
+        <value>Logo for Email Notifications</value>
+    </labels>
+    <labels>
+        <fullName>cma_email_branding_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Email Branding</shortDescription>
+        <value>Email Branding</value>
+    </labels>
+    <labels>
+        <fullName>cma_email_notification_action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Notification action text</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>cma_email_other</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact Email other text</shortDescription>
+        <value>other</value>
+    </labels>
+    <labels>
+        <fullName>cma_enter_domain</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter Domain</shortDescription>
+        <value>Enter a domain, and then click {0}.</value>
+    </labels>
+    <labels>
+        <fullName>cma_enter_values</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter Values</shortDescription>
+        <value>On the New Site page, enter the following values.</value>
+    </labels>
+    <labels>
+        <fullName>cma_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error text</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>cma_exit_stripe</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exit Stripe</shortDescription>
+        <value>Click {0}, and then exit the Stripe dashboard.</value>
+    </labels>
+    <labels>
+        <fullName>cma_field_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field Name</shortDescription>
+        <value>Field Name</value>
+    </labels>
+    <labels>
+        <fullName>cma_get_api_key_link_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Get Api Key link text</shortDescription>
+        <value>Get API Key From Stripe</value>
+    </labels>
+    <labels>
+        <fullName>cma_help</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help text</shortDescription>
+        <value>Help</value>
+    </labels>
+    <labels>
+        <fullName>cma_image_preview</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Email Branding Image Preview</shortDescription>
+        <value>Image Preview</value>
+    </labels>
+    <labels>
+        <fullName>cma_import_complete_modal_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Import Data Complete modal description</shortDescription>
+        <value>We finished importing your data. If something is missing or incorrect, try re-importing your data from Stripe.</value>
+    </labels>
+    <labels>
+        <fullName>cma_import_complete_modal_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Import Data Complete modal title</shortDescription>
+        <value>Import Complete</value>
+    </labels>
+    <labels>
+        <fullName>cma_import_data_modal_button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Import Existing Stripe Data button</shortDescription>
+        <value>Import Data</value>
+    </labels>
+    <labels>
+        <fullName>cma_import_data_modal_description_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Import Existing Stripe Data description first paragraph</shortDescription>
+        <value>Importing Stripe data can take a while depending on how much data you have. Don&apos;t use reports or dashboards in the Checkout Management App while data is being imported.</value>
+    </labels>
+    <labels>
+        <fullName>cma_import_data_modal_description_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Import Existing Stripe Data description second paragraph</shortDescription>
+        <value>Note: Importing data is a one-way, read-only process. Changes you make to data in the Checkout Management App aren&apos;t reflected in Stripe.</value>
+    </labels>
+    <labels>
+        <fullName>cma_import_data_modal_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Import Existing Stripe Data title</shortDescription>
+        <value>Import Existing Stripe Data</value>
+    </labels>
+    <labels>
+        <fullName>cma_import_existing_data</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Wizard step 2 title</shortDescription>
+        <value>Import Existing Data</value>
+    </labels>
+    <labels>
+        <fullName>cma_import_existing_data_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Wizard step 2 description</shortDescription>
+        <value>Import existing data from Stripe in a one way, read-only fashion.</value>
+    </labels>
+    <labels>
+        <fullName>cma_import_existing_data_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Import Existing Data label</shortDescription>
+        <value>Import Existing Data</value>
+    </labels>
+    <labels>
+        <fullName>cma_importing_data_modal_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Importing Data Modal description</shortDescription>
+        <value>We&apos;ll email you when the import process is complete.</value>
+    </labels>
+    <labels>
+        <fullName>cma_importing_data_modal_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Importing Data Modal title</shortDescription>
+        <value>We&apos;re importing your Stripe data</value>
+    </labels>
+    <labels>
+        <fullName>cma_lightning_reports_and_dashboards</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lightning Reports and Dashboards link</shortDescription>
+        <value>Lightning Reports &amp; Dashboards</value>
+    </labels>
+    <labels>
+        <fullName>cma_live_api_key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Live Api Key</shortDescription>
+        <value>Live Secret API Key</value>
+    </labels>
+    <labels>
+        <fullName>cma_live_api_key_tooltip</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Live Api Key Tooltip</shortDescription>
+        <value>Copy the Live Api Key from your Stripe Account and paste it here.</value>
+    </labels>
+    <labels>
+        <fullName>cma_loading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Import Data Loading text</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>cma_logo_modal_cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Logo Upload Modal Cancel Button</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>cma_logo_modal_save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Logo Upload Modal Save Button</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>cma_logo_size_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Email Branding Logo Size error</shortDescription>
+        <value>The file size exceeds the limit allowed and cannot be saved.
+Please make sure your image is not larger than 100KB.</value>
+    </labels>
+    <labels>
+        <fullName>cma_logo_upload_inline_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Email Branding Logo Upload Inline Text</shortDescription>
+        <value>No logo set.</value>
+    </labels>
+    <labels>
+        <fullName>cma_meet_your_dashboard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Wizard step 4 title</shortDescription>
+        <value>Meet Your Dashboard</value>
+    </labels>
+    <labels>
+        <fullName>cma_meet_your_dashboard_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Wizard step 4 description</shortDescription>
+        <value>Get introduced to your dashboard and learn how to customize it for your needs.</value>
+    </labels>
+    <labels>
+        <fullName>cma_meet_your_dashboard_modal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Meet Your Dashboard title</shortDescription>
+        <value>Meet Your Dashboard</value>
+    </labels>
+    <labels>
+        <fullName>cma_meet_your_dashboard_modal_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Meet Your Dashboard Description</shortDescription>
+        <value>To get you started, we created a Checkout Dashboard populated with information about your subscribers. Of course, you can customize the dashboard using standard Salesforce tools.</value>
+    </labels>
+    <labels>
+        <fullName>cma_msg_webhook_with_no_data</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No data was provided</shortDescription>
+        <value>No data was provided</value>
+    </labels>
+    <labels>
+        <fullName>cma_nav_to_site_user</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Instructions on navigating to</shortDescription>
+        <value>Click {0}, and then click {1}.</value>
+    </labels>
+    <labels>
+        <fullName>cma_no_customer_found_for_invoice</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No customer for this invoice.</shortDescription>
+        <value>No customer was found for this invoice.</value>
+    </labels>
+    <labels>
+        <fullName>cma_no_customer_found_for_subscription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Customer Found for Subscription</shortDescription>
+        <value>No customer was found for this subscription</value>
+    </labels>
+    <labels>
+        <fullName>cma_no_customer_found_for_transaction</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Customer Found for Transaction</shortDescription>
+        <value>No customer was found for this transaction</value>
+    </labels>
+    <labels>
+        <fullName>cma_no_logo_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Email Branding No Logo error</shortDescription>
+        <value>No file was selected. You must select a logo before you save.</value>
+    </labels>
+    <labels>
+        <fullName>cma_no_subscription_found_for_delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No subscription was found to delete</shortDescription>
+        <value>No customer was found for this subscription</value>
+    </labels>
+    <labels>
+        <fullName>cma_notification_disabled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Notification disabled</shortDescription>
+        <value>Disabled</value>
+    </labels>
+    <labels>
+        <fullName>cma_notification_enabled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Notification enabled</shortDescription>
+        <value>Enabled</value>
+    </labels>
+    <labels>
+        <fullName>cma_notification_settings_back</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Back text</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>cma_notification_settings_inline_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Inline Text</shortDescription>
+        <value>Use notifications to help customers and team members stay informed. You can enable notifications for billing events, subscription changes, and trial downloads. Use the email templates provided, or customize them with template tools.</value>
+    </labels>
+    <labels>
+        <fullName>cma_notification_settings_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Title</shortDescription>
+        <value>Notification Settings</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_cancelation_confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Cancellation Confirmation</shortDescription>
+        <value>Cancellation Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_cancelation_confirmation_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Cancellation Confirmation inline text</shortDescription>
+        <value>Receive an email confirming that a customer&apos;s cancellation request has been processed.</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_cancellation_confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Cancellation Confirmation</shortDescription>
+        <value>Cancellation Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_cancellation_confirmation_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Cancellation Confirmation inline text</shortDescription>
+        <value>Receive an email confirming that a customer&apos;s cancellation request has been processed.</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_cant_connect</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Can&apos;t Connect to Stripe</shortDescription>
+        <value>Can&apos;t Connect to Stripe</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_cant_connect_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Can&apos;t Connect to Stripe inline text</shortDescription>
+        <value>Receive an email when the AppExchange can&apos;t connect to your Stripe account.</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_email_notifications_inline_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Email Notifications inline text</shortDescription>
+        <value>You can edit the notifications available or add more.</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_email_notifications_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Email Notifications Title</shortDescription>
+        <value>Partner Email Notifications</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_free_trial_expired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Free Trial Expired</shortDescription>
+        <value>Free Trial Expired</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_free_trial_expired_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Free Trial Expired inline text</shortDescription>
+        <value>Receive an email if a free trial expires, but the prospective customer hasn&apos;t started a subscription.</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_free_trial_signup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Free Trial Signup</shortDescription>
+        <value>Free Trial Signup</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_free_trial_signup_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Free Trial Signup inline text</shortDescription>
+        <value>Receive an email when a prospective customer signs up for a free trial.</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_license_changes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner License Changes</shortDescription>
+        <value>License Changes</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_license_changes_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner License Changes inline text</shortDescription>
+        <value>Receive an email when seats are added or removed from a customer&apos;s license.</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_license_discrepancy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner License Discrepancy</shortDescription>
+        <value>License Discrepancy</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_license_discrepancy_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner License Discrepancy inline text</shortDescription>
+        <value>Receive an email when a customer uses more seats than allowed by their license.</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_payment_declined</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Payment Declined</shortDescription>
+        <value>Payment Declined</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_payment_declined_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Payment Declined inline text</shortDescription>
+        <value>Receive an email when a customer&apos;s credit card is declined.</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_purchase_confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Purchase Confirmation</shortDescription>
+        <value>Purchase Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_purchase_confirmation_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Purchase Confirmation inline text</shortDescription>
+        <value>Receive an email when a customer buys your offering.</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_trial_expiring_soon</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Trial Expiring Soon</shortDescription>
+        <value>Trial Expiring Soon</value>
+    </labels>
+    <labels>
+        <fullName>cma_partner_trial_expiring_soon_inline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Trial Expiring Soon inline text</shortDescription>
+        <value>Send a reminder email 1 day before a prospective customer&apos;s trial expires that explains how to purchase your offering.</value>
+    </labels>
+    <labels>
+        <fullName>cma_percentage_complete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Progress Bar percentage complete</shortDescription>
+        <value>% Complete</value>
+    </labels>
+    <labels>
+        <fullName>cma_permission_set_click</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Permission Set click</shortDescription>
+        <value>Go to Permission Set Assignments, and then click {0}.</value>
+    </labels>
+    <labels>
+        <fullName>cma_public_access_settings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Public Access Settings</shortDescription>
+        <value>Public Access Settings</value>
+    </labels>
+    <labels>
+        <fullName>cma_quick_start_reports_and_dashboards</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quick Start Reports and Dashboards link</shortDescription>
+        <value>Quick Start: Reports &amp; Dashboards</value>
+    </labels>
+    <labels>
+        <fullName>cma_re_import_data</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Re-import data label for action text of Setup Wizard</shortDescription>
+        <value>Re-import Data</value>
+    </labels>
+    <labels>
+        <fullName>cma_reconciliation_in_progress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reconciliation already in progress error message</shortDescription>
+        <value>Reconciliation already in progress</value>
+    </labels>
+    <labels>
+        <fullName>cma_register_domain</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Register Domain</shortDescription>
+        <value>Register a Force.com Domain</value>
+    </labels>
+    <labels>
+        <fullName>cma_reimport_data_button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Re-import Data button text</shortDescription>
+        <value>Re-import Data</value>
+    </labels>
+    <labels>
+        <fullName>cma_reimport_data_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Re-import Data error text</shortDescription>
+        <value>There was an error syncing your data. Please re-import Stripe data.</value>
+    </labels>
+    <labels>
+        <fullName>cma_reimport_data_modal_description_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Re-import Data modal description first paragraph</shortDescription>
+        <value>If data is missing or incorrect, try re-importing it from Stripe.</value>
+    </labels>
+    <labels>
+        <fullName>cma_reimport_data_modal_description_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Re-import Data modal description second paragraph</shortDescription>
+        <value>Important: Re-importing data overwrites any existing Stripe data in your org. Report and dashboard customizations and notification settings aren&apos;t affected.</value>
+    </labels>
+    <labels>
+        <fullName>cma_reimport_data_modal_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Re-import Data modal title</shortDescription>
+        <value>Re-import Existing Stripe Data</value>
+    </labels>
+    <labels>
+        <fullName>cma_reimport_data_warning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Re-import Data warning text</shortDescription>
+        <value>We successfully imported {0} records from Stripe, but {1} records couldn’t be imported. For more information, view the CMA logs.</value>
+    </labels>
+    <labels>
+        <fullName>cma_retrieve_upsert_options</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>cma_retrieve_upsert_options</shortDescription>
+        <value>{0} Retrieved from Stripe: {1} upserts succeeded, {2} upserts failed</value>
+    </labels>
+    <labels>
+        <fullName>cma_save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save button</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>cma_save_button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>cma_secure_connections</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Require Secure Connections</shortDescription>
+        <value>Require Secure Connections</value>
+    </labels>
+    <labels>
+        <fullName>cma_select_webhook</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select webhook</shortDescription>
+        <value>Select Stripe Webhook User, and then click {0}.</value>
+    </labels>
+    <labels>
+        <fullName>cma_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Selected</shortDescription>
+        <value>Selected</value>
+    </labels>
+    <labels>
+        <fullName>cma_site_guest_user</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>site guest user</shortDescription>
+        <value>Site Guest User, StripeCma</value>
+    </labels>
+    <labels>
+        <fullName>cma_site_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site Label</shortDescription>
+        <value>Site Label</value>
+    </labels>
+    <labels>
+        <fullName>cma_site_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site Name</shortDescription>
+        <value>Site Name</value>
+    </labels>
+    <labels>
+        <fullName>cma_site_page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Active Site Home Page</shortDescription>
+        <value>Active Site Home Page</value>
+    </labels>
+    <labels>
+        <fullName>cma_site_ready</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site Ready</shortDescription>
+        <value>Your site is ready!</value>
+    </labels>
+    <labels>
+        <fullName>cma_site_url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter site URL</shortDescription>
+        <value>Enter your Force.com site URL as follows.</value>
+    </labels>
+    <labels>
+        <fullName>cma_stripe_account_connected_desc_line1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stripe Account connected description line 1</shortDescription>
+        <value>Now, let&apos;s get your org ready to sync data from Stripe. After you set up data syncing, new Stripe data is automatically added to the Checkout Management App.</value>
+    </labels>
+    <labels>
+        <fullName>cma_stripe_account_connected_desc_line2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stripe Account connected description line 2</shortDescription>
+        <value>Note: Syncing is a one-way, read-only process. Changes you make to data in the Checkout Management App aren&apos;t reflected in Stripe.</value>
+    </labels>
+    <labels>
+        <fullName>cma_stripe_account_connected_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stripe Account connected title</shortDescription>
+        <value>Your Stripe Account is Connected</value>
+    </labels>
+    <labels>
+        <fullName>cma_time_varies_based_on_data</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Time that will take to complete the setup step</shortDescription>
+        <value>Time varies based on data</value>
+    </labels>
+    <labels>
+        <fullName>cma_trailhead_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Trailhead logo description</shortDescription>
+        <value>If you haven&apos;t customized a dashboard before, get up to speed quickly on Trailhead.</value>
+    </labels>
+    <labels>
+        <fullName>cma_unauthorized</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unauthorized</shortDescription>
+        <value>Unauthorized</value>
+    </labels>
+    <labels>
+        <fullName>cma_upload_logo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification Settings Upload Logo text</shortDescription>
+        <value>Upload Image...</value>
+    </labels>
+    <labels>
+        <fullName>cma_value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Value</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>cma_view</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View label for action text of Setup Wizard</shortDescription>
+        <value>View</value>
+    </labels>
+    <labels>
+        <fullName>cma_view_dashboard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View Dashboard</shortDescription>
+        <value>View Dashboard...</value>
+    </labels>
+    <labels>
+        <fullName>cma_view_users</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View Users</shortDescription>
+        <value>View Users</value>
+    </labels>
+    <labels>
+        <fullName>cma_webhook_click</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>webhook click</shortDescription>
+        <value>On the Webhooks tab in your Stripe account, click {0}.</value>
+    </labels>
+    <labels>
+        <fullName>cma_your_url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Used as a placeholder in an example URL</shortDescription>
+        <value>YourSiteURL</value>
+    </labels>
+    <labels>
+        <fullName>fflib_QueryFactory_crossobject_fieldsets_not_allowed_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when selecting a cross-object fieldsset is not allowed and attempted.</shortDescription>
+        <value>Cross-object fields not allowed and field &quot;{0}&quot; is a cross-object field.</value>
+    </labels>
+    <labels>
+        <fullName>fflib_QueryFactory_fieldset_wrong_sobject_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when selecting a field set for a different sobject type.</shortDescription>
+        <value>Field set &quot;{0}&quot; is not for SObject type &quot;{1}&quot;</value>
+    </labels>
+    <labels>
+        <fullName>fflib_QueryFactory_recursive_subquery_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Presented when attempting to nest subqueries.</shortDescription>
+        <value>Invalid call to subselectQuery.  You may not add a subselect query to a subselect query.</value>
+    </labels>
+    <labels>
+        <fullName>fflib_QueryFactory_subquery_invalid_relationship</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Presented when attempting to create a subquery from an invalid relationship.</shortDescription>
+        <value>Invalid call to subselectQuery.  Invalid relationship for table.</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_field_not_insertable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>fflib_security_error_field_not_insertable</shortDescription>
+        <value>You do not have permission to insert field {1} on {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_field_not_readable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>fflib_security_error_field_not_readable</shortDescription>
+        <value>You do not have permission to read the field {1} on {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_field_not_updateable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>fflib_security_error_field_not_updateable</shortDescription>
+        <value>You do not have permission to update the field {1} on {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_object_not_deletable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>fflib_security_error_object_not_deletable</shortDescription>
+        <value>You do not have permission to delete {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_object_not_insertable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>fflib_security_error_object_not_insertable</shortDescription>
+        <value>You do not have permission to insert {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_object_not_readable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>fflib_security_error_object_not_readable</shortDescription>
+        <value>You do not have permission to read {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_object_not_updateable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>fflib_security_error_object_not_updateable</shortDescription>
+        <value>You do not have permission to update {0}</value>
+    </labels>
+</CustomLabels>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaChangeStripeAccountModal.cmp</manifest_name>
+		<manifest_text>&lt;!--
+    Copyright (c) 2016 Salesforce
+    @author v.nessi@salesforce.com
+--&gt;
+&lt;aura:component controller=&quot;sfcma.CMAStepsContainerController&quot;&gt;
+  &lt;aura:registerEvent name=&quot;disconnectAccountEvent&quot; type=&quot;sfcma:cmaDisconnectAccountEvent&quot;/&gt;
+  &lt;aura:registerEvent name=&quot;openWizardModalEvent&quot; type=&quot;sfcma:cmaOpenWizardModal&quot;/&gt;
+  
+  &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
+  &lt;aura:handler event=&quot;sfcma:cmaStepCompletedEvent&quot; action=&quot;{!c.handleStep1CompletedEvent}&quot;/&gt;
+
+  &lt;aura:attribute name=&quot;stripeUsername&quot; type=&quot;String&quot; /&gt;
+  &lt;div aria-hidden=&quot;true&quot; role=&quot;dialog&quot; class=&quot;slds-modal slds-fade-in-open &quot;&gt;
+    &lt;div class=&quot;slds-modal__container cma-modal-width &quot;&gt;
+        &lt;div class=&quot;slds-modal__header&quot;&gt;
+          &lt;h2 class=&quot;slds-text-heading--medium&quot;&gt;{!$Label.sfcma.cma_change_stripe_account}&lt;/h2&gt;
+          &lt;button class=&quot;slds-button slds-button--icon-inverse slds-modal__close&quot; onclick=&quot;{!c.closeModal}&quot;&gt;
+                    &lt;sfcma:svg ariaHidden=&quot;true&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot;/&gt;
+                    &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slds-modal__content slds-p-right--xx-large slds-p-left--xx-large slds-p-bottom--x-large slds-p-top--large&quot;&gt;
+          &lt;div&gt;
+              &lt;p&gt;{!$Label.sfcma.cma_change_stripe_account_modal_description}&lt;/p&gt;
+              &lt;div class=&quot;slds-form-element slds-m-left--large slds-m-top--small&quot;&gt;
+            &lt;label class=&quot;slds-form-element__label slds-text-body--regular&quot; for=&quot;sample1&quot;&gt;{!$Label.sfcma.cma_current_account}&lt;/label&gt;
+            &lt;div class=&quot;slds-form-element__control&quot;&gt;
+              &lt;span&gt;{!v.stripeUsername}&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slds-modal__footer&quot;&gt;
+          &lt;div class=&quot;slds-x-small-buttons--horizontal&quot;&gt;
+              &lt;div class=&quot;slds-modal__footer--directional&quot;&gt;
+                &lt;button class=&quot;slds-button slds-button--neutral&quot; onclick=&quot;{!c.disconnectAccount}&quot;&gt;{!$Label.sfcma.cma_disconnect_current_account}&lt;/button&gt;
+              &lt;/div&gt;
+                &lt;button class=&quot;slds-button slds-button--neutral&quot; onclick=&quot;{!c.closeModal}&quot;&gt;{!$Label.sfcma.cma_logo_modal_cancel}&lt;/button&gt;
+                &lt;button class=&quot;slds-button slds-button--brand&quot; onclick=&quot;{!c.changeStripeAccount}&quot;&gt;{!$Label.sfcma.cma_change_stripe_account}&lt;/button&gt;
+
+          &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;slds-backdrop slds-backdrop--open&quot;&gt;&lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaChangeStripeAccountModal.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>34.0</apiVersion>
+				<description>Modal to update Stripe credentials</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaChangeStripeAccountModal.css</manifest_name>
+		<manifest_text>.THIS .cma-modal-width {
+	max-width: 800px !important;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaChangeStripeAccountModalController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author v.nessi@salesforce.com
+ */
+({
+	doInit : function(component) {
+		var action = component.get(&quot;c.getStripeUsername&quot;);
+		action.setCallback(this, function(response) {
+			var state = response.getState();
+			if (state === &quot;SUCCESS&quot;) {
+                component.set(&quot;v.stripeUsername&quot;, response.getReturnValue());
+			}
+		});
+		$A.enqueueAction(action);
+	},
+
+	changeStripeAccount : function() {
+		var appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+		appEvent.setParams({
+			&quot;modalId&quot; : &quot;modalStep1&quot;,
+			&quot;modalIdToClose&quot; : &quot;changeStripeAccountModal&quot;
+		});
+		appEvent.fire();
+	},
+
+	closeModal : function() {
+		var appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+		appEvent.setParams({
+			&quot;modalIdToClose&quot; : &quot;changeStripeAccountModal&quot;
+		});
+		appEvent.fire();
+	},
+
+	disconnectAccount : function(component) {
+		var action = component.get(&quot;c.setStep1NotCompleted&quot;);
+		action.setCallback(this, function(response) {
+			var state = response.getState();
+			if (state === &quot;SUCCESS&quot;) {
+				var disconnectAccountEvent = $A.get(&quot;e.sfcma:cmaDisconnectAccountEvent&quot;);
+				disconnectAccountEvent.setParams({ &quot;stepsToUncheck&quot; : [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;] });
+				disconnectAccountEvent.fire();
+				var appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+				appEvent.setParams({
+	            	&quot;modalIdToClose&quot; : &quot;changeStripeAccountModal&quot;
+			 	});
+	        	appEvent.fire();
+			}
+		});
+		$A.enqueueAction(action);
+
+	},
+
+	handleStep1CompletedEvent : function(component, event) {
+		var stepCompleted = event.getParam(&quot;stepCompleted&quot;);
+		var data = event.getParam(&quot;data&quot;);
+		if(stepCompleted === &quot;1&quot;) {
+			if(!$A.util.isEmpty(data)) {
+				component.set(&quot;v.stripeUsername&quot;, data[0].username);
+			}
+		}
+	}
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

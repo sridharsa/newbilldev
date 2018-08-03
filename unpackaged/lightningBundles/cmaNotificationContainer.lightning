@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaNotificationContainer.cmp</manifest_name>
+		<manifest_text>&lt;!--
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ *--&gt;
+&lt;aura:component controller=&quot;sfcma.CMANotificationSettingsController&quot;&gt;
+    &lt;aura:registerEvent name=&quot;cmaSaveLogo&quot; type=&quot;sfcma:cmaSaveLogo&quot;/&gt;
+    &lt;aura:registerEvent name=&quot;cmaOpenNotificationContainer&quot; type=&quot;sfcma:cmaOpenNotificationContainerEvent&quot;/&gt;
+    &lt;aura:registerEvent name=&quot;cmaContactsAdded&quot; type=&quot;sfcma:cmaContactsAdded&quot;/&gt;
+    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
+    &lt;aura:handler name=&quot;cmaOpenNotifModal&quot; event=&quot;sfcma:cmaOpenNotifModal&quot; action=&quot;{!c.openNotifModal}&quot;/&gt;
+    &lt;aura:attribute name=&quot;customerNotifications&quot; type=&quot;Object[]&quot; /&gt;
+    &lt;aura:attribute name=&quot;partnerNotifications&quot; type=&quot;Object[]&quot; /&gt;
+    &lt;aura:attribute name=&quot;selectedContacts&quot; type=&quot;Contact[]&quot;/&gt;
+    &lt;aura:attribute name=&quot;contacts&quot; type=&quot;Contact[]&quot;/&gt;
+    &lt;aura:attribute name=&quot;showBackButton&quot; type=&quot;Boolean&quot; default=&quot;true&quot;/&gt;
+
+    &lt;!-- START: modal components --&gt;
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modalNotif&quot; aura:id=&quot;cmaEmailNotificationModal&quot;&gt;
+        &lt;sfcma:cmaAddContactsModal selectedContacts=&quot;{!v.selectedContacts}&quot; contacts=&quot;{!v.contacts}&quot;/&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;slds-hide&quot; name=&quot;modal&quot; aura:id=&quot;cmaLogoUploadModal&quot;&gt;
+        &lt;sfcma:cmaLoadLogoModal /&gt;
+    &lt;/div&gt;
+    &lt;!-- END: modal components--&gt;
+
+    &lt;div aura:id=&quot;cmaNotificationSettings&quot;&gt;
+
+        &lt;!-- START: cma notification header --&gt;
+        &lt;div class=&quot;slds-page-header&quot; role=&quot;banner&quot;&gt;
+            &lt;div class=&quot;slds-grid&quot;&gt;
+                &lt;div class=&quot;slds-col slds-has-flexi-truncate&quot;&gt;
+                    &lt;h1 class=&quot;slds-text-heading--small slds-truncate&quot; title=&quot;Notification Settings&quot;&gt;{!$Label.sfcma.cma_notification_settings_title}&lt;/h1&gt;
+                &lt;/div&gt;
+
+                &lt;aura:if isTrue=&quot;{!v.showBackButton}&quot;&gt;
+                    &lt;div class=&quot;slds-m-right--small&quot;&gt;
+                        &lt;button class=&quot;slds-button slds-button--icon-bare&quot; onclick=&quot;{!c.goToWizardPage}&quot;&gt;
+                            &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#back&quot; class=&quot;slds-button__icon slds-button__icon--small&quot; ariaHidden=&quot;true&quot;/&gt;
+                            &lt;span class=&quot;slds-m-left--xx-small&quot;&gt;{!$Label.sfcma.cma_notification_settings_back}&lt;/span&gt;
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/aura:if&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- END: cma notification header --&gt;
+
+        &lt;!-- START: cma-notification-body component --&gt;
+        &lt;div class=&quot;cma-notification-body  slds-p-around--x-large&quot;&gt;
+            &lt;div class=&quot;slds-container slds-container--center slds-p-bottom--xx-large slds-p-left--xx-large slds-p-right--xx-large&quot;&gt;
+                &lt;div class=&quot;slds-text-body--regular&quot;&gt;
+                    {!$Label.sfcma.cma_notification_settings_inline_text}
+                &lt;/div&gt;
+
+                &lt;div class=&quot;slds-m-top--xx-large&quot;&gt;
+                    &lt;sfcma:cmaEmailBranding /&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;slds-m-top--xx-large&quot;&gt;
+                    &lt;sfcma:cmaCustomerEmailNotifContainer customerNotifications=&quot;{!v.customerNotifications}&quot;/&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;slds-m-top--xx-large&quot;&gt;
+                    &lt;sfcma:cmaPartnerEmailNotifContainer partnerNotifications=&quot;{!v.partnerNotifications}&quot;/&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaNotificationContainer.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>34.0</apiVersion>
+				<description>Wraps the content of Notifications Setup</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaNotificationContainer.css</manifest_name>
+		<manifest_text>.THIS .cma-notification-body {
+	background-color:rgb(244, 246, 249);
+}
+
+.THIS a {
+  cursor: pointer;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaNotificationContainerController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    doInit : function(component) {
+        var action = component.get(&quot;c.getEmailConfiguration&quot;);
+        action.setCallback(this, function(response) {
+            if (response.getState() === &quot;SUCCESS&quot;) {
+                var emailConfig = response.getReturnValue();
+                if (emailConfig.logo !== &apos;&apos;){
+                    $A.get(&quot;e.sfcma:cmaSaveLogo&quot;).setParams({&quot;logo&quot; : emailConfig.logo}).fire();
+                }
+                component.set(&quot;v.customerNotifications&quot;,emailConfig.customerNotifications);
+                component.set(&quot;v.partnerNotifications&quot;,emailConfig.partnerNotifications);
+                component.set(&quot;v.selectedContacts&quot;,emailConfig.contacts);
+                component.set(&quot;v.contacts&quot;,emailConfig.contacts.slice(0));
+                $A.get(&quot;e.sfcma:cmaContactsAdded&quot;).setParams({&quot;contacts&quot; : emailConfig.contacts}).fire();
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    openNotifModal : function(component, event, helper) {
+        var modalId = event.getParam(&quot;modalId&quot;);
+        var open = event.getParam(&quot;open&quot;);
+        if (open) {
+            helper.openNotifModal(component,modalId);
+        }
+        else {
+            helper.closeNotifModal(component,modalId);
+        }
+    },
+    goToWizardPage : function(component) {
+        component.getEvent(&quot;cmaOpenNotificationContainer&quot;).setParams({&quot;open&quot; : false}).fire();
+    }
+
+})</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaNotificationContainerHelper.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    openNotifModal : function(component,modalId) {
+        var modal = component.find(modalId);
+        var mainContainer = component.find(&apos;cmaNotificationSettings&apos;);
+        this.showElement(modal);
+        modal.getElement().setAttribute(&quot;aria-hidden&quot;, &quot;false&quot;);
+        mainContainer.getElement().setAttribute(&quot;aria-hidden&quot;, &quot;true&quot;);
+    },
+    closeNotifModal : function(component,modalId) {
+        var modal = component.find(modalId);
+        var mainContainer = component.find(&apos;cmaNotificationSettings&apos;);
+        this.hideElement(modal);
+        modal.getElement().setAttribute(&quot;aria-hidden&quot;, &quot;true&quot;);
+        mainContainer.getElement().setAttribute(&quot;aria-hidden&quot;, &quot;false&quot;);        
+    },
+    hideElement : function(element) {
+        $A.util.addClass(element, &apos;slds-hide&apos;);
+    },
+    showElement : function(element) {
+        $A.util.removeClass(element, &apos;slds-hide&apos;);
+    }
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

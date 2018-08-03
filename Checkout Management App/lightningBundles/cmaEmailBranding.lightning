@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaEmailBranding.cmp</manifest_name>
+		<manifest_text>&lt;!--
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ *--&gt;
+&lt;aura:component &gt;
+    &lt;aura:registerEvent name=&quot;cmaOpenNotifModal&quot; type=&quot;sfcma:cmaOpenNotifModal&quot;/&gt;
+    &lt;aura:handler event=&quot;sfcma:cmaSaveLogo&quot; action=&quot;{!c.loadLogo}&quot;/&gt;
+    
+    &lt;div class=&quot;slds-text-heading--medium&quot;&gt;{!$Label.sfcma.cma_email_branding_title}&lt;/div&gt;
+    &lt;div class=&quot;slds-box slds-table slds-m-top--small&quot;&gt;
+        &lt;div class=&quot;slds-m-top--small slds-m-left--x-small slds-grid&quot;&gt;
+            &lt;div class=&quot;slds-col--padded&quot;&gt;
+                &lt;div class=&quot;cma-thin-letter&quot;&gt;
+                    &lt;span class=&quot;slds-text-heading--small&quot;&gt;{!$Label.sfcma.cma_email_branding_subtitle}&lt;/span&gt;
+                    &lt;span class=&quot;slds-text-body--regular&quot;&gt;&amp;nbsp;{!$Label.sfcma.cma_email_branding_optional}&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div&gt;{!$Label.sfcma.cma_email_branding_inline_text}&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-container--right slds-m-right--medium&quot;&gt;
+                &lt;a onclick=&quot;{!c.openLogoUploadModal}&quot;&gt;{!$Label.sfcma.cma_upload_logo}&lt;/a&gt;                   
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;slds-container--small slds-container--center slds-m-top--large slds-m-bottom--small cma-image-container&quot; aura:id=&quot;logoContainer&quot;&gt;
+            &lt;div class=&quot;slds-p-top--large slds-text-align--center&quot;&gt;
+                &lt;span&gt;{!$Label.sfcma.cma_logo_upload_inline_text}&lt;/span&gt;&lt;br/&gt;
+                &lt;a onclick=&quot;{!c.openLogoUploadModal}&quot;&gt;{!$Label.sfcma.cma_upload_logo}&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slds-hide slds-container--small slds-container--center slds-m-top--large slds-m-bottom--small&quot; aura:id=&quot;logoUploadedContainer&quot;&gt;
+            &lt;div class=&quot;slds-p-top--large slds-text-align--center&quot;&gt;
+                &lt;img aura:id=&quot;logoImage&quot; src=&quot;#&quot; class=&quot;cma-logo-image&quot; /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaEmailBranding.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Email Branding Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaEmailBranding.css</manifest_name>
+		<manifest_text>.THIS .cma-thin-letter {
+  font-weight: 100;
+}
+
+.THIS .cma-image-container {
+	background-color: rgb(224, 229, 238);
+	width: 200px;
+    height: 100px;
+}
+
+.THIS .cma-image-input {  
+	opacity: 0;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    -khtml-opacity: 0;
+    z-index: 20;
+    cursor: pointer !important;
+    margin-left: -108px;
+    width: 100px;
+}
+
+.THIS .cma-upload-anchor {
+    z-index: 30;
+    cursor: pointer;
+}
+
+.THIS input[type=&quot;file&quot;]::-webkit-file-upload-button{
+	cursor: pointer !important;
+}
+
+.THIS .cma-logo-image {
+    max-width: 200px;
+    max-height: 100px;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaEmailBrandingController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    openLogoUploadModal : function(component) {
+        component.getEvent(&quot;cmaOpenNotifModal&quot;).setParams({&quot;modalId&quot; : &quot;cmaLogoUploadModal&quot;, &quot;open&quot; : true}).fire();
+    },
+    loadLogo : function(component, event, helper){
+        var logo = component.find(&apos;logoImage&apos;).getElement();
+        logo.src = event.getParam(&quot;logo&quot;);
+        var logoContainer = component.find(&apos;logoContainer&apos;);
+        var logoUploadedContainer = component.find(&apos;logoUploadedContainer&apos;);
+        helper.hideElement(logoContainer);
+        helper.showElement(logoUploadedContainer);
+    }
+})</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaEmailBrandingHelper.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    hideElement : function(element) {
+        $A.util.addClass(element, &apos;slds-hide&apos;);
+    },
+    showElement : function(element) {
+        $A.util.removeClass(element, &apos;slds-hide&apos;);
+    }
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaLearnAboutDashboardModal.cmp</manifest_name>
+		<manifest_text>&lt;aura:component controller=&quot;sfcma.CMALearnAboutDashboardModelController&quot;&gt;
+	&lt;aura:registerEvent name=&quot;openWizardModalEvent&quot; type=&quot;sfcma:cmaOpenWizardModal&quot;/&gt;
+	&lt;aura:dependency resource=&quot;force:navigateToSObject&quot; type=&quot;EVENT&quot;/&gt;
+
+	&lt;div aria-hidden=&quot;false&quot; role=&quot;dialog&quot; class=&quot;slds-modal--large slds-modal slds-fade-in-open &quot;&gt;
+		&lt;div class=&quot;slds-modal__container cma-modal-width &quot;&gt;
+			&lt;div class=&quot;slds-modal__header&quot;&gt;
+    			&lt;h2 class=&quot;slds-text-heading--medium&quot;&gt;{!$Label.sfcma.cma_meet_your_dashboard_modal}&lt;/h2&gt;
+    			&lt;button class=&quot;slds-button slds-button--icon-inverse slds-modal__close&quot; onclick=&quot;{!c.closeModal}&quot;&gt;
+					&lt;sfcma:svg ariaHidden=&quot;true&quot; class=&quot;slds-icon icon__svg icon-utility-search slds-icon--small cma-complete-step&quot; xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot;/&gt;
+					&lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+				&lt;/button&gt;
+				&lt;/div&gt;
+  			&lt;div class=&quot;slds-modal__content slds-p-right--xx-large slds-p-left--xx-large slds-p-bottom--x-large slds-p-top--large&quot;&gt;
+		  		&lt;div class=&quot;slds-grid&quot;&gt;
+	  					&lt;div class=&quot;slds-col slds-align-middle slds-size--1-of-2 slds-m-right--medium&quot;&gt;
+    		  				&lt;p&gt;{!$Label.sfcma.cma_meet_your_dashboard_modal_description}&lt;/p&gt;
+        		  		&lt;div class=&quot;slds-m-top--small&quot;&gt;&lt;a onclick=&quot;{!c.navigateToDashboard}&quot;&gt;{!$Label.sfcma.cma_view_dashboard}&lt;/a&gt;&lt;/div&gt;
+        		  &lt;/div&gt;
+        		  &lt;div class=&quot;slds-col slds-align-middle slds-size--1-of-2&quot;&gt;
+    		  				&lt;div&gt;
+                  	&lt;img src=&quot;/resource/sfcma__uilib/img/dashboard_image2x.png&quot;/&gt;
+                  &lt;/div&gt;
+        		  &lt;/div&gt;
+    		  &lt;/div&gt;
+    		  &lt;div class=&quot;slds-m-top--large slds-m-bottom--x-large&quot; style=&quot;background-color:rgba(0, 0, 0, 0.16);padding:1px&quot;&gt;&lt;/div&gt;
+		  		&lt;div class=&quot;slds-grid&quot;&gt;
+		  			&lt;div class=&quot;slds-col--padded slds-align-middle slds-size--1-of-2&quot;&gt;
+    		  			&lt;div class=&quot;slds-grid&quot;&gt;
+        		  			&lt;div class=&quot;slds-col slds-size--1-of-4 slds-align-middle&quot;&gt;
+                  		&lt;div class=&quot;slds-p-bottom--small&quot;&gt;
+                					&lt;img src=&quot;/resource/sfcma__uilib/img/trailhead_logo2x.png&quot; /&gt;
+                  		&lt;/div&gt;
+	  								&lt;/div&gt;
+	    		  				&lt;div class=&quot;slds-col slds-size--3-of-4 slds-align-middle slds-col--padded&quot;&gt;
+			  							&lt;p&gt;{!$Label.sfcma.cma_trailhead_description}&lt;/p&gt;
+	    		  				&lt;/div&gt;
+	    		  		&lt;/div&gt;
+	    		  &lt;/div&gt;
+	    		  	&lt;div class=&quot;slds-col slds-align-middle slds-size--1-of-2&quot;&gt;
+			  			&lt;div class=&quot;slds-text-heading--small slds-m-bottom--xx-small&quot;&gt;
+			                &lt;div class=&quot;cma-quick-start-image&quot;&gt;
+		                  		&lt;img src=&quot;/resource/sfcma__uilib/img/badge_quick_start.png&quot; class=&quot;cma-image&quot; /&gt;
+			                &lt;/div&gt;
+	    		  			&lt;span class=&quot;slds-m-left--x-small&quot;&gt;
+			  					&lt;a href=&quot;https://developer.salesforce.com/trailhead/en/project/quickstart-reports&quot; target=&quot;_blank&quot;&gt;{!$Label.sfcma.cma_quick_start_reports_and_dashboards}&lt;/a&gt;
+	    		  			&lt;/span&gt;
+	    		  		&lt;/div&gt;
+	    		  		&lt;div class=&quot;slds-text-heading--small&quot;&gt;
+		                    &lt;div class=&quot;cma-lightning-reports-image&quot;&gt;
+		                  		&lt;img src=&quot;/resource/sfcma__uilib/img/badge_lighting_reports_dashboard.png&quot; class=&quot;cma-image&quot; /&gt;
+		                    &lt;/div&gt;
+			  				&lt;span class=&quot;slds-m-left--x-small&quot;&gt;
+			  					&lt;a href=&quot;https://developer.salesforce.com/trailhead/en/module/lex_implementation_reports_dashboards&quot; target=&quot;_blank&quot;&gt;{!$Label.sfcma.cma_lightning_reports_and_dashboards}&lt;/a&gt;
+	    		  			&lt;/span&gt;
+			  			&lt;/div&gt;
+		  			&lt;/div&gt;
+			  	&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;slds-modal__footer&quot;&gt;
+				&lt;div class=&quot;slds-x-small-buttons--horizontal&quot;&gt;
+					&lt;button class=&quot;slds-button slds-button--neutral slds-button--brand&quot; onclick=&quot;{!c.closeModal}&quot;&gt;{!$Label.sfcma.cma_done_label}&lt;/button&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;slds-backdrop slds-backdrop--open&quot;&gt;&lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaLearnAboutDashboardModal.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>View Dashboard modal component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaLearnAboutDashboardModal.css</manifest_name>
+		<manifest_text>.THIS .cma-modal-width {
+	max-width: 800px !important;
+}
+
+.THIS .cma-dashboard-image {
+	background-image: url(&quot;/resource/sfcma__uilib/img/dashboard_image.png&quot;);
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.THIS .cma-trailhead-image {
+	background-image: url(&quot;/resource/sfcma__uilib/img/trailhead_logo.png&quot;);
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.THIS .cma-quick-start-image {
+	background-image: url(&quot;/resource/sfcma__uilib/img/badge_quick_start.png&quot;);
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.THIS .cma-lightning-reports-image {
+	background-image: url(&quot;/resource/sfcma__uilib/img/badge_lighting_reports_dashboard.png&quot;);
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.THIS .cma-image {
+	visibility: hidden;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (min-resolution: 2dppx),
+	only screen and (min-resolution: 192dpi) {
+
+    .THIS .cma-dashboard-image {
+        background-image: url(&quot;/resource/sfcma__uilib/img/dashboard_image@2x.png&quot;) !important;
+        background-size: 320px 200px;
+    }
+
+    .THIS .cma-trailhead-image {
+		background-image: url(&quot;/resource/sfcma__uilib/img/trailhead_logo@2x.png&quot;) !important;
+		background-size: 81px 71px;
+	}
+
+	.THIS .cma-quick-start-image {
+		background-image: url(&quot;/resource/sfcma__uilib/img/badge_quick_start@2x.png&quot;) !important;
+		background-size: 40px 40px;
+	}
+
+	.THIS .cma-lightning-reports-image {
+		background-image: url(&quot;/resource/sfcma__uilib/img/badge_lighting_reports_dashboard@2x.png&quot;) !important;
+		background-size: 40px 40px;
+	}
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaLearnAboutDashboardModalController.js</manifest_name>
+		<manifest_text>({
+	closeModal : function() {
+		var appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+		appEvent.setParams({
+			&quot;modalIdToClose&quot; : &quot;modalStep4&quot;
+		});
+		appEvent.fire();
+	},
+
+	navigateToDashboard : function(component, event, helper) {
+        var action = component.get(&quot;c.getDashboardId&quot;);
+		action.setCallback(this, function(response) {
+			var state = response.getState();
+			if (state === &quot;SUCCESS&quot;) {
+                var dashId = response.getReturnValue();
+            	if (helper.isLightningExperience()){
+					sforce.one.navigateToSObject(dashId);
+				}else {
+     				window.location.href = &apos;/&apos;+dashId;
+				}
+			} else if (state === &quot;ERROR&quot;) {
+                window.location.href = &apos;/01Z&apos;;
+			}
+		});
+		$A.enqueueAction(action);
+	}
+})</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaLearnAboutDashboardModalHelper.js</manifest_name>
+		<manifest_text>({
+	isLightningExperience : function() {
+		return((typeof sforce != &apos;undefined&apos;) &amp;&amp; sforce);
+	}
+
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

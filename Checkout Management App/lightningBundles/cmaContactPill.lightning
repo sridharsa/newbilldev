@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaContactPill.cmp</manifest_name>
+		<manifest_text>&lt;!--
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ *--&gt;
+&lt;aura:component &gt;
+    &lt;aura:registerEvent name=&quot;cmaSelectContact&quot; type=&quot;sfcma:cmaSelectContact&quot;/&gt;
+	&lt;aura:attribute name=&quot;contact&quot; type=&quot;Contact&quot;/&gt;	
+    
+    &lt;a class=&quot;slds-pill&quot;&gt;
+        &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/standard-sprite/svg/symbols.svg#contact&quot; class=&quot;slds-icon slds-icon-standard-contact slds-pill__icon&quot; ariaHidden=&quot;true&quot;/&gt;
+        
+        &lt;span class=&quot;slds-pill__label&quot;&gt;{!v.contact.Name}&lt;/span&gt;
+        &lt;button class=&quot;slds-button slds-button--icon-bare slds-pill__remove&quot; onclick=&quot;{!c.deselectContact}&quot;&gt;
+            &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot; class=&quot;slds-button__icon slds-button__icon--small&quot; ariaHidden=&quot;true&quot;/&gt;
+            &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_contact_pill_remove}&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/a&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaContactPill.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Contact Pill Lighting Component for the Add Contacts Modal</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaContactPillController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+	deselectContact : function(component) {
+        component.getEvent(&quot;cmaSelectContact&quot;).setParams({&quot;contact&quot; : component.get(&quot;v.contact&quot;), &quot;selected&quot; : false}).fire();
+    }
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

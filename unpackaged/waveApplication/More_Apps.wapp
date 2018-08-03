@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assetIcon>/analytics/wave/web/proto/images/app/icons/11.png</assetIcon>
+    <folder>More_Apps</folder>
+    <masterLabel>More_Apps</masterLabel>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>newbill@metazoa.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <templateOrigin>einsteinsample__DEV_Einstein_Analytics_Samples</templateOrigin>
+    <templateVersion>5.0</templateVersion>
+</WaveApplication>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaSaveLogo.evt</manifest_name>
+		<manifest_xml>
+			<!-- * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ * -->
+			<aura:event
+				type="APPLICATION"
+				description="Fired when the logo is saved">
+				<aura:attribute
+					name="logo"
+					type="String"/>
+			</aura:event>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaSaveLogo.evt-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Save Email Branding Logo Event</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+</LightningBundle>

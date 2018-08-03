@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaStepsContainer.cmp</manifest_name>
+		<manifest_text>&lt;!--
+    Copyright (c) 2016 Salesforce
+    @author v.nessi@salesforce.com
+--&gt;
+&lt;aura:component controller=&quot;sfcma.CMAStepsContainerController&quot;&gt;
+    &lt;aura:attribute name=&quot;stepAttributes&quot; type=&quot;Object[]&quot; /&gt;
+    &lt;aura:attribute name=&quot;progressValue&quot; type=&quot;Integer&quot; default=&quot;0&quot; /&gt;
+    &lt;aura:attribute name=&quot;stepsDone&quot; type=&quot;String[]&quot; /&gt;
+
+    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
+
+    &lt;div class=&quot;cma-steps-container  slds-p-around--xx-large&quot;&gt;
+        &lt;div class=&quot;container slds-container--center slds-p-bottom--xx-large slds-p-top--small slds-p-left--xx-large slds-p-right--xx-large&quot;&gt;
+            &lt;ul class=&quot;slds-list--vertical slds-table slds-table--bordered slds-max-medium-table--stacked-horizontal slds-no-row-hover slds-box cma-steps-list&quot;&gt;
+
+                &lt;sfcma:cmaProgressBar value=&quot;{!v.progressValue}&quot; stepsDone=&quot;{!v.stepsDone}&quot;/&gt;
+
+                &lt;li class=&quot;slds-list__item slds-grid slds-has-divider--top-space slds-p-top--medium slds-p-left--x-large slds-p-right--x-large&quot;&gt;
+                    &lt;sfcma:cmaSetupStep stepNumber=&quot;1&quot; isComplete=&quot;{!v.stepAttributes[0].isStepComplete}&quot; headerText=&quot;{!$Label.sfcma.cma_connect_stripe_account}&quot;
+                                    bodyText=&quot;{!$Label.sfcma.cma_connect_stripe_account_description}&quot;
+                                    actionText=&quot;{!v.stepAttributes[0].actionText}&quot; actionDesc=&quot;{!v.stepAttributes[0].actionDesc}&quot; /&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;slds-list__item slds-grid slds-has-divider--top-space slds-p-top--medium slds-p-left--x-large slds-p-right--x-large&quot;&gt;
+                    &lt;sfcma:cmaSetupStep stepNumber=&quot;2&quot; isComplete=&quot;{!v.stepAttributes[1].isStepComplete}&quot; headerText=&quot;{!$Label.sfcma.cma_build_site_title}&quot;
+                                    bodyText=&quot;{!$Label.sfcma.cma_build_site_description}&quot;
+                                    actionText=&quot;{!v.stepAttributes[1].actionText}&quot; actionDesc=&quot;{!v.stepAttributes[1].actionDesc}&quot; 
+                                    isAccountConnected=&quot;{!v.stepAttributes[0].isStepComplete}&quot;/&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;slds-list__item slds-grid slds-has-divider--top-space slds-p-top--medium slds-p-left--x-large slds-p-right--x-large&quot;&gt;
+                    &lt;sfcma:cmaSetupStep stepNumber=&quot;3&quot; isComplete=&quot;{!v.stepAttributes[2].isStepComplete}&quot; headerText=&quot;{!$Label.sfcma.cma_import_existing_data}&quot;
+                                    bodyText=&quot;{!$Label.sfcma.cma_import_existing_data_description}&quot;
+                                    actionText=&quot;{!v.stepAttributes[2].actionText}&quot; actionDesc=&quot;{!v.stepAttributes[2].actionDesc}&quot; 
+                                    isAccountConnected=&quot;{!v.stepAttributes[0].isStepComplete}&quot;/&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;slds-list__item slds-grid slds-has-divider--top-space slds-p-top--medium slds-p-left--x-large slds-p-right--x-large&quot;&gt;
+                    &lt;sfcma:cmaSetupStep stepNumber=&quot;4&quot; isComplete=&quot;{!v.stepAttributes[3].isStepComplete}&quot; headerText=&quot;{!$Label.sfcma.cma_configure_notification_settings}&quot;
+                                    bodyText=&quot;{!$Label.sfcma.cma_configure_notification_settings_description}&quot;
+                                    actionText=&quot;{!v.stepAttributes[3].actionText}&quot; actionDesc=&quot;{!v.stepAttributes[3].actionDesc}&quot; /&gt;
+                &lt;/li&gt;
+
+                &lt;li class=&quot;slds-list__item slds-grid slds-has-divider--top-space slds-p-top--medium slds-p-bottom--medium slds-p-left--x-large slds-p-right--x-large&quot;&gt;
+                    &lt;sfcma:cmaSetupStep stepNumber=&quot;5&quot; isComplete=&quot;{!v.stepAttributes[4].isStepComplete}&quot; headerText=&quot;{!$Label.sfcma.cma_meet_your_dashboard}&quot;
+                                    bodyText=&quot;{!$Label.sfcma.cma_meet_your_dashboard_description}&quot;
+                                    actionText=&quot;{!v.stepAttributes[4].actionText}&quot; actionDesc=&quot;{!v.stepAttributes[4].actionDesc}&quot; /&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaStepsContainer.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Setup Wizard Steps Container Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaStepsContainer.css</manifest_name>
+		<manifest_text>.THIS.cma-steps-container {
+	color:rgb(84, 105, 141); 
+	background-color:rgb(244, 246, 249);
+}
+
+.THIS .cma-steps-list {
+	padding:0px!important;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaStepsContainerController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author v.nessi@salesforce.com
+ */
+ ({
+	doInit: function(component, event, helper) {
+		var numberOfStepsCompleted = 0;
+		var completedSteps;
+
+		var stepAttributes = [{isStepComplete: false, actionText: $A.get(&quot;$Label.sfcma.cma_do_it&quot;), actionDesc: $A.get(&quot;$Label.sfcma.cma_about_1_min&quot;)},
+                              {isStepComplete: false, actionText: $A.get(&quot;$Label.sfcma.cma_do_it&quot;), actionDesc: &apos;&apos;},
+							  {isStepComplete: false, actionText: $A.get(&quot;$Label.sfcma.cma_do_it&quot;), actionDesc: $A.get(&quot;$Label.sfcma.cma_time_varies_based_on_data&quot;)},
+					  		  {isStepComplete: false, actionText: $A.get(&quot;$Label.sfcma.cma_do_it&quot;), actionDesc: $A.get(&quot;$Label.sfcma.cma_about_2_mins&quot;)},
+						   	  {isStepComplete: false, actionText: $A.get(&quot;$Label.sfcma.cma_do_it&quot;), actionDesc: $A.get(&quot;$Label.sfcma.cma_about_1_min&quot;)}];
+		component.set(&quot;v.stepAttributes&quot;, stepAttributes);
+
+        var completedStepLabels = [{actionText: $A.get(&quot;$Label.sfcma.cma_change&quot;), actionDesc: &apos;&apos;},
+                                  {actionText: $A.get(&quot;$Label.sfcma.cma_view&quot;), actionDesc: &apos;&apos;},
+    							  {actionText: $A.get(&quot;$Label.sfcma.cma_re_import_data&quot;), actionDesc: $A.get(&quot;$Label.sfcma.cma_complete&quot;)},
+    					  		  {actionText: $A.get(&quot;$Label.sfcma.cma_change&quot;), actionDesc: $A.get(&quot;$Label.sfcma.cma_complete&quot;)},
+    						   	  {actionText: $A.get(&quot;$Label.sfcma.cma_view&quot;), actionDesc: &apos;&apos;}];
+
+		var action = component.get(&quot;c.getStepsCompleted&quot;);
+        var stepsDone = [];
+		action.setCallback(this, function(response) {
+            var state = response.getState();
+			if (state === &quot;SUCCESS&quot;) {
+                var stepAttributes = component.get(&quot;v.stepAttributes&quot;);
+				completedSteps = response.getReturnValue();
+                if(completedSteps.length === 5) {
+                    for(var i=0; i &lt; completedSteps.length; i++) {
+                        if(completedSteps[i]) {
+                            if(i === 0) {
+                                helper.setStep1Completed(component, completedStepLabels);
+                            } else {
+                                helper.setStepCompleted(component, stepAttributes, i, completedStepLabels);
+                            }
+                            numberOfStepsCompleted++;
+                            stepsDone.push((i+1).toString());
+                        }
+                    }
+					component.set(&quot;v.progressValue&quot;, (numberOfStepsCompleted/completedSteps.length)*100);
+				}
+				component.set(&quot;v.stepAttributes&quot;, stepAttributes);
+                component.set(&quot;v.stepsDone&quot;, stepsDone);
+			}
+		});
+		$A.enqueueAction(action);
+	}
+})</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaStepsContainerHelper.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author v.nessi@salesforce.com
+ */
+({
+    setStep1Completed: function(component, completedStepLabels) {
+        var action = component.get(&quot;c.getStripeUsername&quot;);
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === &quot;SUCCESS&quot;) {
+                var stepAttributes = component.get(&quot;v.stepAttributes&quot;);
+                stepAttributes[0].isStepComplete = true;
+                stepAttributes[0].actionText =  completedStepLabels[0].actionText;
+                stepAttributes[0].actionDesc = response.getReturnValue();
+                component.set(&quot;v.stepAttributes&quot;, stepAttributes);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    setStepCompleted: function(component, stepAttributes, stepNumber, completedStepLabels) {
+        stepAttributes[stepNumber].isStepComplete = true;
+        stepAttributes[stepNumber].actionText = completedStepLabels[stepNumber].actionText;
+        stepAttributes[stepNumber].actionDesc = completedStepLabels[stepNumber].actionDesc;
+    }
+
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

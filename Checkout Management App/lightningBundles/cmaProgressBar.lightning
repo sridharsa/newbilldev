@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaProgressBar.cmp</manifest_name>
+		<manifest_text>&lt;!--
+    Copyright (c) 2016 Salesforce
+    @author v.nessi@salesforce.com
+--&gt;
+&lt;aura:component &gt;
+    &lt;aura:attribute name=&quot;value&quot; type=&quot;Integer&quot; default=&quot;0&quot; /&gt;
+    &lt;aura:attribute name=&quot;maxValue&quot; type=&quot;Integer&quot; default=&quot;100&quot; /&gt;
+    &lt;aura:attribute name=&quot;stepsDone&quot; type=&quot;String[]&quot; /&gt;
+    &lt;aura:handler event=&quot;sfcma:cmaStepCompletedEvent&quot; action=&quot;{!c.handleStepCompletedEvent}&quot;/&gt;
+    &lt;aura:handler event=&quot;sfcma:cmaDisconnectAccountEvent&quot; action=&quot;{!c.handleDisconnectAccount}&quot;/&gt;
+
+    &lt;li class=&quot;slds-grid slds-p-around--x-small slds-p-top--medium&quot;&gt;
+        &lt;div class=&quot;slds-size--1-of-6 slds-m-left--medium&quot;&gt;
+            &lt;span&gt;&lt;span id=&quot;percentageCompleted&quot;&gt;{!v.value}&lt;/span&gt;{!$Label.sfcma.cma_percentage_complete}&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slds-size--5-of-6 slds-m-right--xx-large&quot;&gt;
+            &lt;progress id=&quot;progressBar&quot; value=&quot;{!v.value}&quot; max=&quot;{!v.maxValue}&quot;&gt;&lt;/progress&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaProgressBar.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Setup Wizard Progress Bar Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaProgressBar.css</manifest_name>
+		<manifest_text>.THIS progress {
+  -webkit-appearance: none;
+  border: none;
+  width: 100%;
+  height:12px;
+}
+
+.THIS progress::-webkit-progress-bar {
+  background: rgba(0, 0, 0, 0.07);
+  border-radius: 45px;
+}
+
+.THIS progress::-webkit-progress-value {
+  background: rgb(75, 202, 129);
+  border-radius: 45px;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaProgressBarController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author v.nessi@salesforce.com
+ */
+({
+
+	handleStepCompletedEvent : function(component, event) {
+		var progressBarValue = component.get(&quot;v.value&quot;);
+		var maxProgressBarValue = component.get(&quot;v.maxValue&quot;);
+		var stepsDone = component.get(&quot;v.stepsDone&quot;);
+		var stepCompleted = event.getParam(&quot;stepCompleted&quot;);
+
+		if (stepsDone.indexOf(stepCompleted) &lt; 0) {
+			var steps = 5;
+	        var stepsCompleted = 0;
+			stepsDone.push(stepCompleted);
+			if(maxProgressBarValue !== 0) {
+				if(progressBarValue !== 0) { stepsCompleted = (progressBarValue / maxProgressBarValue) * steps; }
+			}
+			stepsCompleted++;
+
+			var newProgressValue = (stepsCompleted/steps)*100;
+			component.set(&quot;v.stepsDone&quot;, stepsDone);
+			component.set(&quot;v.value&quot;, newProgressValue);
+		}
+	},
+
+	handleDisconnectAccount : function(component, event) {
+		var stepsToUncheck = event.getParam(&quot;stepsToUncheck&quot;);
+		var progressBarValue = component.get(&quot;v.value&quot;);
+		var maxProgressBarValue = component.get(&quot;v.maxValue&quot;);
+		var stepsDone = component.get(&quot;v.stepsDone&quot;);
+		if (stepsDone.indexOf(&quot;1&quot;) &gt; -1) {
+			var steps = 5;
+	        var stepsCompleted = 0;
+			var removedStepsCount = 0;
+			//Remove stepsToUncheck received in the event if exist in the list
+			for(var i=0; i &lt; stepsToUncheck.length; i++){
+				if(stepsDone.indexOf(stepsToUncheck[i]) &gt; -1) { stepsDone.splice(stepsDone.indexOf(stepsToUncheck[i]), 1); removedStepsCount++; }
+			}
+			if(maxProgressBarValue !== 0) {
+				if(progressBarValue !== 0) { stepsCompleted = (progressBarValue / maxProgressBarValue) * steps; }
+			}
+			stepsCompleted-=removedStepsCount;
+			var newProgressValue = (stepsCompleted/steps)*100;
+			component.set(&quot;v.stepsDone&quot;, stepsDone);
+			component.set(&quot;v.value&quot;, newProgressValue);
+		}
+	}
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

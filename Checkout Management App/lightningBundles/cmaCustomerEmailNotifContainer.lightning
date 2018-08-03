@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaCustomerEmailNotifContainer.cmp</manifest_name>
+		<manifest_text>&lt;!--
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ *--&gt;
+&lt;aura:component &gt;
+    &lt;aura:attribute name=&quot;customerNotifications&quot; type=&quot;Object[]&quot; /&gt;
+
+    &lt;div class=&quot;slds-text-heading--medium&quot;&gt;{!$Label.sfcma.cma_customer_email_notifications_title}&lt;/div&gt;
+    &lt;p class=&quot;slds-text-body--regular&quot;&gt;{!$Label.sfcma.cma_customer_email_notifications_inline_text}&lt;/p&gt;
+    &lt;ul class=&quot;slds-list--vertical slds-table slds-box slds-m-top--small cma-notification-list&quot; style=&quot;padding:0px;&quot;&gt;
+
+
+        &lt;aura:iteration items=&quot;{!v.customerNotifications}&quot; var=&quot;cNotif&quot; indexVar=&quot;index&quot;&gt;
+            &lt;li class=&quot;{! &apos;slds-list__item &apos;+((index!=0)?&apos;slds-has-divider--top-space&apos;:&apos;&apos;)+
+                        &apos; slds-grid &apos;+((index==v.customerNotifications.length - 1)?&apos;slds-p-bottom--small&apos;:&apos;&apos;)+
+                        &apos; slds-p-top--xx-small slds-p-left--xx-small cma-outline&apos;}&quot;&gt;
+                &lt;sfcma:cmaEmailNotif headerText=&quot;{!cNotif.headerText}&quot;
+                                     bodyText=&quot;{!cNotif.bodyText}&quot;
+                                     actionText=&quot;{!cNotif.actionText}&quot;
+                                     fieldName=&quot;{!cNotif.fieldName}&quot;
+                                     isEnabled=&quot;{!cNotif.isEnabled}&quot;
+                                     templateId=&quot;{!cNotif.templateId}&quot;/&gt;
+            &lt;/li&gt;
+        &lt;/aura:iteration&gt;
+
+    &lt;/ul&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaCustomerEmailNotifContainer.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Customer Email Notifications Container Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaCustomerEmailNotifContainer.css</manifest_name>
+		<manifest_text>.THIS .cma-notification-list {
+	padding:0px;
+}
+
+.THIS .cma-toggle {
+    display: table-cell;
+    padding: 0 0 0 1rem;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1px;
+    position: relative;
+    text-align: center;
+}
+
+.THIS .cma-outline&gt;span, .THIS .cma-outline .toggle {
+    display: table-cell;
+    padding: 0 0 0 1rem;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.THIS .cma-uiInput--checkbox input[type=checkbox]:checked, .THIS input.cma-uiInput--checkbox[type=checkbox]:checked {
+    border-color: rgb(21, 137, 238);
+    box-shadow: 0 0 3px #0070d2;
+}
+
+.THIS .cma-uiInput--checkbox input[type=checkbox]:checked, .THIS input.cma-uiInput--checkbox[type=checkbox]:checked {
+    background-color: rgb(21, 137, 238);
+    background-image: url(&quot;data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+PHN2ZyB4bWxucz0iaHR0…gMi44bC0zMy42IDMzLjZjLTAuOSAwLjktMiAxLjQtMy4yIDEuNHoiPjwvcGF0aD48L3N2Zz4=&quot;);
+    background-size: cover;
+    border-color: rgb(21, 137, 238);
+}
+.THIS .cma-toggle input, .THIS .cma-toggle .cma-text {
+    left: 1rem;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+}
+.THIS .cma-uiInput--checkbox input, .THIS input.cma-uiInput--checkbox {
+    display: block;
+    font-family: &apos;Salesforce Sans&apos;,Arial,sans-serif;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: -.25em;
+    border: 1px solid rgb(216, 221, 230);
+    border-radius: .125rem;
+    background: rgb(255, 255, 255);
+    -webkit-transition: .5s ease all;
+    transition: .5s ease all;
+}
+.THIS .cma-toggle .cma-switch {
+    background: rgb(22, 50, 92);
+    border: .25rem solid rgb(22, 50, 92);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    font-size: .875rem;
+    height: 2rem;
+    position: relative;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    width: 4.5rem;
+}
+.THIS .cma-toggle :checked~label .cma-switch {
+    background: rgb(75, 202, 129);
+    border-color: rgb(75, 202, 129);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+.THIS .cma-toggle :checked~.cma-switchText.cma-enabled {
+    color: rgb(75, 202, 129);
+    display: block;
+}
+.THIS .cma-toggle :not(checked)~.cma-switchText.cma-disabled {
+    display: block;
+}
+.THIS .cma-toggle :not(checked)~.cma-switchText.cma-enabled {
+    display: none;
+}
+.THIS .cma-toggle :checked~.cma-switchText.cma-disabled {
+    display: none;
+}
+.THIS .cma-toggle .cma-switchText {
+    font-family: &apos;SalesforceSans-Regular&apos;,Arial,sans-serif;
+    font-size: .875rem;
+    margin-left: .75rem;
+}
+
+.THIS .cma-toggle :not(:checked)~label .cma-switch:after {
+    background: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: .75rem;
+    content: &apos;&apos;;
+    display: inline-block;
+    height: 1.5rem;
+    left: 0;
+    position: absolute;
+    -webkit-transition: left .5s ease;
+    transition: left .5s ease;
+    width: 1.5rem;
+}
+.THIS .cma-toggle :checked~label .cma-switch:after {
+    background: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: .75rem;
+    content: &apos;&apos;;
+    display: inline-block;
+    height: 1.5rem;
+    left: 60%;
+    position: absolute;
+    -webkit-transition: left .5s ease;
+    transition: left .5s ease;
+    width: 1.5rem;
+}
+.THIS input {
+    padding-top: 0;
+}</manifest_text>
+	</manifest_file>
+</LightningBundle>

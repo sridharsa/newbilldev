@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaImportDataModal.cmp</manifest_name>
+		<manifest_text>&lt;!--
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+--&gt;
+&lt;aura:component controller=&quot;sfcma.CMAImportDataController&quot;&gt;
+    &lt;aura:registerEvent name=&quot;cmaOpenWizardModalEvent&quot; type=&quot;sfcma:cmaOpenWizardModal&quot;/&gt;
+    &lt;aura:registerEvent name=&quot;cmaImportingStripeData&quot; type=&quot;sfcma:cmaImportingStripeData&quot;/&gt;
+
+    &lt;aura:attribute name=&quot;errorMessage&quot; type=&quot;String&quot; /&gt;
+
+    &lt;div aria-hidden=&quot;true&quot; role=&quot;dialog&quot; class=&quot;slds-modal--large slds-modal slds-fade-in-open &quot;&gt;
+        &lt;div class=&quot;slds-modal__container cma-modal-width&quot;&gt;
+            &lt;div class=&quot;slds-modal__header&quot;&gt;
+                &lt;div class=&quot;slds-hide slds-notify-container&quot; aura:id=&quot;connectWithStripeError&quot;&gt;
+                    &lt;div class=&quot;slds-notify slds-notify--toast slds-theme--error&quot; role=&quot;alert&quot;&gt;
+                        &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_error}&lt;/span&gt;
+                        &lt;button class=&quot;slds-button slds-button--icon-inverse slds-notify__close&quot; onclick=&quot;{!c.closeError}&quot;&gt;
+                            &lt;sfcma:svg ariaHidden=&quot;true&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot;/&gt;
+                            &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;div class=&quot;notify__content slds-grid&quot;&gt;
+                            &lt;sfcma:svg ariaHidden=&quot;true&quot; class=&quot;slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex&quot; xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#warning&quot;/&gt;
+                            &lt;div class=&quot;slds-col slds-align-middle&quot;&gt;
+                                &lt;h2 class=&quot;slds-text-heading--small&quot;&gt;{!v.errorMessage}&lt;/h2&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;h2 class=&quot;slds-text-heading--medium&quot;&gt;{!$Label.sfcma.cma_import_data_modal_title}&lt;/h2&gt;
+                &lt;button class=&quot;slds-button slds-button--icon-inverse slds-modal__close&quot; onclick=&quot;{!c.closeStepModal}&quot;&gt;
+                    &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; ariaHidden=&quot;true&quot;/&gt;
+                    &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-modal__content slds-p-right--xx-large slds-p-left--xx-large slds-p-bottom--x-large slds-p-top--large&quot;&gt;
+                &lt;div&gt;
+                    &lt;p&gt;{!$Label.sfcma.cma_import_data_modal_description_1}&lt;/p&gt;
+                    &lt;br/&gt;
+                    &lt;p&gt;{!$Label.sfcma.cma_import_data_modal_description_2}&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-modal__footer&quot;&gt;
+                &lt;div class=&quot;slds-x-small-buttons--horizontal&quot;&gt;
+                    &lt;button class=&quot;slds-button slds-button--neutral&quot; onclick=&quot;{!c.closeStepModal}&quot;&gt;{!$Label.sfcma.cma_cancel}&lt;/button&gt;
+                    &lt;button aura:id=&quot;importButtonId&quot; class=&quot;slds-button slds-button--neutral slds-button--brand&quot; onclick=&quot;{!c.importData}&quot;&gt;{!$Label.sfcma.cma_import_data_modal_button}&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-backdrop slds-backdrop--open&quot;&gt;&lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaImportDataModal.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Import Data Modal</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaImportDataModal.css</manifest_name>
+		<manifest_text>.THIS .cma-modal-width {
+    max-width: 800px !important;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaImportDataModalController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    closeStepModal : function(component, event, helper) {
+        helper.closeError(component);
+        var appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+        appEvent.setParams({
+            &quot;modalIdToClose&quot; : &quot;modalStep2&quot;
+        });
+        appEvent.fire();
+    },
+
+    closeError : function(component, event, helper) {
+		helper.closeError(component);
+	},
+
+    importData : function(component, event, helper) {
+        helper.closeError(component);
+        var action = component.get(&quot;c.startImportingData&quot;);
+        var actionStripeState = component.get(&quot;c.getImportStripeDataState&quot;);
+        var button = component.find(&apos;importButtonId&apos;);
+        var element = button.getElement();
+        element.setAttribute(&apos;disabled&apos;, &apos;disabled&apos;);
+        actionStripeState.setCallback(this, function(response){
+            if(response.getState() === &quot;SUCCESS&quot;){
+                var importDataState = response.getReturnValue();
+                element.removeAttribute(&apos;disabled&apos;);
+                // We must check for reconciliation custom setting field indicating it&apos;s running and we also check for
+                // apex jobs that belongs to reconciliation running, just in case that a previous run has aborted or failed leaving inconsistence on CS.
+                if (!(importDataState.isRunning &amp;&amp; importDataState.isApexJobRunning)){
+                    action.setCallback(this, function(response) {
+                        var appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+                        appEvent.setParams({
+                            &quot;modalId&quot; : &quot;modalStep2a&quot;,
+                            &quot;modalIdToClose&quot; : &quot;modalStep2&quot;
+                        });
+                        appEvent.fire();
+                        component.getEvent(&quot;cmaImportingStripeData&quot;).fire();
+                    });
+                    $A.enqueueAction(action);
+                }else{
+                    component.set(&quot;v.errorMessage&quot;,$A.get(&quot;$Label.sfcma.cma_reconciliation_in_progress&quot;));
+					var cmpTarget = component.find(&apos;connectWithStripeError&apos;);
+					$A.util.removeClass(cmpTarget, &apos;slds-hide&apos;);
+                }
+            }
+        });
+        $A.enqueueAction(actionStripeState);
+    }
+})</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaImportDataModalHelper.js</manifest_name>
+		<manifest_text>({
+    closeError : function(component) {
+		var cmpTarget = component.find(&apos;connectWithStripeError&apos;);
+		$A.util.addClass(cmpTarget, &apos;slds-hide&apos;);
+	}
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaSetupStep.cmp</manifest_name>
+		<manifest_text>&lt;!--
+    Copyright (c) 2016 Salesforce
+    @author v.nessi@salesforce.com
+--&gt;
+&lt;aura:component controller=&quot;sfcma.CMAStepsContainerController&quot;&gt;
+    &lt;aura:attribute name=&quot;stepNumber&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;isComplete&quot; type=&quot;Boolean&quot; default=&quot;false&quot; /&gt;
+    &lt;aura:attribute name=&quot;headerText&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;bodyText&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;actionText&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;actionDesc&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;actionModalId&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;actionName&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;completeActionName&quot; type=&quot;String&quot; /&gt;
+    &lt;aura:attribute name=&quot;isAccountConnected&quot; type=&quot;Boolean&quot; default=&quot;true&quot;/&gt;
+
+    &lt;aura:registerEvent name=&quot;cmpEvent&quot; type=&quot;sfcma:cmaStepCompletedEvent&quot;/&gt;
+    &lt;aura:registerEvent name=&quot;openWizardModalEvent&quot; type=&quot;sfcma:cmaOpenWizardModal&quot;/&gt;
+    &lt;aura:registerEvent name=&quot;cmaOpenNotificationContainer&quot; type=&quot;sfcma:cmaOpenNotificationContainerEvent&quot;/&gt;
+    
+    &lt;aura:handler event=&quot;sfcma:cmaStepCompletedEvent&quot; action=&quot;{!c.handleStepCompletedEvent}&quot;/&gt;
+    &lt;aura:handler event=&quot;sfcma:cmaDisconnectAccountEvent&quot; action=&quot;{!c.handleDisconnectAccount}&quot;/&gt;
+
+    &lt;div class=&quot;slds-size--4-of-6&quot;&gt;
+        &lt;div class=&quot;slds-media slds-grid slds-m-top--medium slds-m-left--small slds-m-bottom--x-small&quot;&gt;
+            &lt;aura:if isTrue=&quot;{!v.isComplete}&quot;&gt;
+                &lt;div id=&quot;{!&apos;completed&apos; + v.stepNumber}&quot; class=&quot;slds-media__figure slds-align-middle slds-text-heading--small slds-m-right--large&quot;&gt;
+                    &lt;span class=&quot;slds-icon__container&quot;&gt;
+                        &lt;sfcma:svg ariaHidden=&quot;true&quot; class=&quot;slds-icon icon__svg icon-utility-search slds-icon--medium cma-complete-step&quot; xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#check&quot;/&gt;
+                    &lt;/span&gt;
+                &lt;/div&gt;
+
+                &lt;aura:set attribute=&quot;else&quot;&gt;
+                    &lt;div id=&quot;{!&apos;step&apos; + v.stepNumber}&quot; class=&quot;cma-circle slds-media__figure slds-align-middle slds-p-around--medium slds-text-heading--small slds-m-right--large&quot;&gt;{!v.stepNumber}&lt;/div&gt;
+                &lt;/aura:set&gt;
+            &lt;/aura:if&gt;
+            &lt;div class=&quot;slds-media__body&quot;&gt;
+                &lt;div class=&quot;slds-text-heading--small&quot;&gt;{!v.headerText}&lt;/div&gt;
+                &lt;div class=&quot;slds-text-body--regular&quot;&gt;{!v.bodyText}&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;aura:if isTrue=&quot;{!v.isAccountConnected}&quot;&gt;
+        &lt;div class=&quot;slds-size--2-of-6 slds-container--right slds-container--small slds-text-align--right slds-m-top--medium&quot;&gt;
+            &lt;aura:if isTrue=&quot;{!v.isComplete}&quot;&gt;
+                &lt;div id=&quot;{!&apos;actionStepCompleted&apos; + v.stepNumber}&quot;&gt;
+                    &lt;div class=&quot;slds-m-right--x-large&quot;&gt;
+                        &lt;div&gt;{!v.actionDesc}&lt;/div&gt;
+                        &lt;a onclick=&quot;{!c.executeStepCompleteAction}&quot;&gt;{!v.actionText}&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                 &lt;aura:set attribute=&quot;else&quot;&gt;
+                    &lt;div id=&quot;{!&apos;actionStep&apos; + v.stepNumber}&quot; &gt;
+                        &lt;div class=&quot;slds-m-right--x-large&quot;&gt;
+                            &lt;a onclick=&quot;{!c.executeAction}&quot;&gt;{!v.actionText}&lt;/a&gt;&lt;br&gt;&lt;/br&gt;
+                            &lt;div class=&quot;slds-text-body--small&quot;&gt;{!v.actionDesc}&lt;/div&gt;
+        
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/aura:set&gt;
+            &lt;/aura:if&gt;
+        &lt;/div&gt;
+    &lt;/aura:if&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaSetupStep.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Setup Wizard Step Component</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaSetupStep.css</manifest_name>
+		<manifest_text>.THIS .cma-circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 10px!important;
+  background: #fff;
+  border: 1px solid rgb(84, 105, 141);
+  color: rgb(84, 105, 141);
+  text-align: center;
+}
+
+.THIS .cma-complete-step {
+  fill: rgb(75, 202, 129)!important;
+}
+
+.THIS a {
+  cursor: pointer;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaSetupStepController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author v.nessi@salesforce.com
+ */
+({
+	executeAction : function(component, event, helper) {
+		var actionName = component.get(&quot;v.stepNumber&quot;);
+		var appEvent;
+		var action;
+		if(actionName === &apos;1&apos;) {
+			appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+			appEvent.setParams({
+            	&quot;modalId&quot; : &quot;modalStep1&quot;
+		 	});
+        	appEvent.fire();
+        } else if(actionName === &apos;2&apos;) {
+            appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+			appEvent.setParams({
+            	&quot;modalId&quot; : &quot;buildSiteModal&quot;
+		 	});
+        	appEvent.fire();
+        	action = component.get(&quot;c.setStep2Completed&quot;);
+			action.setCallback(this, function(response) {
+				var state = response.getState();
+				if (state === &quot;SUCCESS&quot;) {
+					helper.fireCompletedStepEvent(component, helper, actionName);
+				}
+			});
+			$A.enqueueAction(action);
+    	} else if(actionName === &apos;3&apos;){
+            appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+			appEvent.setParams({
+            	&quot;modalId&quot; : &quot;modalStep2&quot;
+		 	});
+        	appEvent.fire();
+		} else if(actionName === &apos;4&apos;) {
+			action = component.get(&quot;c.setStep4Completed&quot;);
+			var openNotifContainerEvent = component.getEvent(&quot;cmaOpenNotificationContainer&quot;);
+			openNotifContainerEvent.setParams({&quot;open&quot; : true}).fire();
+
+			action.setCallback(this, function(response) {
+				var state = response.getState();
+				if (state === &quot;SUCCESS&quot;) {
+					helper.fireCompletedStepEvent(component, helper, actionName);
+				}
+			});
+			$A.enqueueAction(action);
+		} else if(actionName === &apos;5&apos;) {
+			appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+			appEvent.setParams({
+            	&quot;modalId&quot; : &quot;modalStep4&quot;
+		 	});
+        	appEvent.fire();
+			action = component.get(&quot;c.setStep5Completed&quot;);
+			action.setCallback(this, function(response) {
+				var state = response.getState();
+				if (state === &quot;SUCCESS&quot;) {
+					helper.fireCompletedStepEvent(component, helper, actionName);
+				}
+			});
+			$A.enqueueAction(action);
+		}
+	},
+	executeStepCompleteAction : function(component) {
+		var actualStepNumber = component.get(&quot;v.stepNumber&quot;);
+		var appEvent;
+		if(actualStepNumber === &quot;1&quot;) {
+			appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+			appEvent.setParams({
+            	&quot;modalId&quot; : &quot;changeStripeAccountModal&quot;
+		 	});
+        	appEvent.fire();
+		} else if(actualStepNumber === &apos;2&apos;) {
+            appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+			appEvent.setParams({
+            	&quot;modalId&quot; : &quot;buildSiteModal&quot;
+		 	});
+        	appEvent.fire();
+    	} else if(actualStepNumber === &quot;3&quot;) {
+            appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+			appEvent.setParams({
+            	&quot;modalId&quot; : &quot;reImportDataModal&quot;
+		 	});
+        	appEvent.fire();
+        } else if(actualStepNumber === &quot;4&quot;) {
+			var openNotifContainerEvent = component.getEvent(&quot;cmaOpenNotificationContainer&quot;);
+			openNotifContainerEvent.setParams({&quot;open&quot; : true}).fire();
+		} else if(actualStepNumber === &quot;5&quot;) {
+			appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+			appEvent.setParams({
+            	&quot;modalId&quot; : &quot;modalStep4&quot;
+		 	});
+        	appEvent.fire();
+		}
+	},
+
+	handleStepCompletedEvent : function(component, event, helper) {
+		var stepCompleted = event.getParam(&quot;stepCompleted&quot;);
+		var actualStepNumber = component.get(&quot;v.stepNumber&quot;);
+		if(stepCompleted === &quot;1&quot;) {
+			component.set(&quot;v.isAccountConnected&quot;,true);
+		}
+		if(stepCompleted === actualStepNumber) {
+
+			component.set(&quot;v.isComplete&quot;, true);
+			if(stepCompleted === &quot;1&quot;) {
+				helper.setStep1Completed(component, helper, event);
+			} if (stepCompleted === &quot;2&quot;) {
+				helper.setStep2Completed(component, helper);
+			} if (stepCompleted === &quot;3&quot;) {
+				helper.setStep3Completed(component, helper);
+			} if (stepCompleted === &quot;4&quot;) {
+				helper.setStep4Completed(component, helper);
+			} if (stepCompleted === &quot;5&quot;) {
+				helper.setStep5Completed(component, helper);
+			}
+
+		}
+	},
+
+	handleDisconnectAccount : function(component, event, helper) {
+		var stepsToUncheck = event.getParam(&quot;stepsToUncheck&quot;);
+		var componentStepNumber = component.get(&quot;v.stepNumber&quot;);
+		for(var i=0; i &lt; stepsToUncheck.length; i++){
+			if(componentStepNumber === stepsToUncheck[i]){
+				var actualStepInt = parseInt(stepsToUncheck[i]);
+				helper.handleDisconnectAccount(component, actualStepInt, componentStepNumber);				
+			}
+		}
+	}
+})</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaSetupStepHelper.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author v.nessi@salesforce.com
+ */
+({
+	setStep1Completed: function(component, helper, event) {
+		var data = event.getParam(&quot;data&quot;);
+		if($A.util.isEmpty(data)) {
+			var action = component.get(&quot;c.getStripeUsername&quot;);
+			action.setCallback(this, function(response) {
+				var state = response.getState();
+				if (state === &quot;SUCCESS&quot;) {
+					component.set(&quot;v.actionDesc&quot;, response.getReturnValue());
+				}
+			});
+			$A.enqueueAction(action);
+		} else {
+			component.set(&quot;v.actionDesc&quot;, data[0].username);
+		}
+		component.set(&quot;v.actionText&quot;, $A.get(&quot;$Label.sfcma.cma_change&quot;));
+
+    },
+	setStep2Completed: function(component) {
+		component.set(&quot;v.actionText&quot;, $A.get(&quot;$Label.sfcma.cma_view&quot;));
+		component.set(&quot;v.actionDesc&quot;, &quot;&quot;);
+    },
+ 	setStep3Completed: function(component) {
+        var action = component.get(&quot;c.setStep3Completed&quot;);
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === &quot;SUCCESS&quot;) {
+                component.set(&quot;v.actionText&quot;, $A.get(&quot;$Label.sfcma.cma_re_import_data&quot;));
+                component.set(&quot;v.actionDesc&quot;, $A.get(&quot;$Label.sfcma.cma_complete&quot;));
+            }
+        });
+        $A.enqueueAction(action);
+    },
+
+    setStep4Completed: function(component) {
+		component.set(&quot;v.actionText&quot;, $A.get(&quot;$Label.sfcma.cma_change&quot;));
+		component.set(&quot;v.actionDesc&quot;, $A.get(&quot;$Label.sfcma.cma_complete&quot;));
+    },
+
+    setStep5Completed: function(component) {
+		component.set(&quot;v.actionText&quot;, $A.get(&quot;$Label.sfcma.cma_view&quot;));
+		component.set(&quot;v.actionDesc&quot;, &quot;&quot;);
+    },
+
+	fireCompletedStepEvent: function(component, helper, actionName) {
+		var cmpEvent = $A.get(&quot;e.sfcma:cmaStepCompletedEvent&quot;);
+		cmpEvent.setParams({
+			&quot;stepCompleted&quot; : actionName });
+		cmpEvent.fire();
+    },
+
+	handleDisconnectAccount : function(component, actualStep, componentStepNumber) {
+		var stepAttributesNotCompleted = [{isStepComplete: false, actionText: $A.get(&quot;$Label.sfcma.cma_do_it&quot;), actionDesc: $A.get(&quot;$Label.sfcma.cma_about_1_min&quot;)},
+                              {isStepComplete: false, actionText: $A.get(&quot;$Label.sfcma.cma_do_it&quot;), actionDesc: &apos;&apos;},
+							  {isStepComplete: false, actionText: $A.get(&quot;$Label.sfcma.cma_do_it&quot;), actionDesc: $A.get(&quot;$Label.sfcma.cma_time_varies_based_on_data&quot;)},
+					  		  {isStepComplete: false, actionText: $A.get(&quot;$Label.sfcma.cma_do_it&quot;), actionDesc: $A.get(&quot;$Label.sfcma.cma_about_2_mins&quot;)},
+						   	  {isStepComplete: false, actionText: $A.get(&quot;$Label.sfcma.cma_do_it&quot;), actionDesc: $A.get(&quot;$Label.sfcma.cma_about_1_min&quot;)}];
+
+
+		component.set(&quot;v.actionText&quot;, stepAttributesNotCompleted[actualStep - 1].actionText);
+		component.set(&quot;v.actionDesc&quot;, stepAttributesNotCompleted[actualStep - 1].actionDesc);
+		component.set(&quot;v.isComplete&quot;, stepAttributesNotCompleted[actualStep - 1].isStepComplete);
+		if(componentStepNumber === &quot;2&quot; || componentStepNumber === &quot;3&quot;){
+			component.set(&quot;v.isAccountConnected&quot;,false);
+		}
+	}
+
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

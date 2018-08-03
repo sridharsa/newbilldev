@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaImportCompleteModal.cmp</manifest_name>
+		<manifest_text>&lt;!--
+    Copyright (c) 2016 Salesforce
+    @author jesteche@salesforce.com
+--&gt;
+&lt;aura:component &gt;
+    &lt;aura:registerEvent name=&quot;cmaOpenWizardModalEvent&quot; type=&quot;sfcma:cmaOpenWizardModal&quot;/&gt;
+    
+    &lt;div aria-hidden=&quot;false&quot; role=&quot;dialog&quot; class=&quot;slds-modal--large slds-modal slds-fade-in-open &quot;&gt;
+        &lt;div class=&quot;slds-modal__container cma-modal-width &quot;&gt;
+            &lt;div class=&quot;slds-modal__header&quot;&gt;
+                &lt;h2 class=&quot;slds-text-heading--medium&quot;&gt;{!$Label.sfcma.cma_import_complete_modal_title}&lt;/h2&gt;
+                &lt;button class=&quot;slds-button slds-button--icon-inverse slds-modal__close&quot; onclick=&quot;{!c.closeModal}&quot;&gt;
+                    &lt;sfcma:svg xlinkHref=&quot;/resource/sfcma__SLDS/assets/icons/utility-sprite/svg/symbols.svg#close&quot; class=&quot;slds-button__icon slds-button__icon--large&quot; ariaHidden=&quot;true&quot;/&gt;
+                    &lt;span class=&quot;slds-assistive-text&quot;&gt;{!$Label.sfcma.cma_close}&lt;/span&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-modal__content slds-p-right--xx-large slds-p-left--xx-large slds-p-bottom--x-large slds-p-top--large&quot;&gt;
+                &lt;p class=&quot;slds-m-top--x-small slds-m-bottom--xx-large&quot;&gt;{!$Label.sfcma.cma_import_complete_modal_description}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;slds-modal__footer&quot;&gt;
+                &lt;div class=&quot;slds-x-small-buttons--horizontal&quot;&gt;
+                    &lt;button class=&quot;slds-button slds-button--neutral&quot; onclick=&quot;{!c.reImportData}&quot;&gt;{!$Label.sfcma.cma_reimport_data_button}&lt;/button&gt;
+                    &lt;button class=&quot;slds-button slds-button--neutral slds-button--brand&quot; onclick=&quot;{!c.closeModal}&quot;&gt;{!$Label.sfcma.cma_done}&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slds-backdrop slds-backdrop--open&quot;&gt;&lt;/div&gt;
+&lt;/aura:component&gt;</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaImportCompleteModal.cmp-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Import Complete Modal</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaImportCompleteModal.css</manifest_name>
+		<manifest_text>.THIS .cma-modal-width {
+    max-width: 800px !important;
+}</manifest_text>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaImportCompleteModalController.js</manifest_name>
+		<manifest_text>/**
+ * Copyright (c) 2016 Salesforce
+ * @author jesteche@salesforce.com
+ */
+({
+    closeModal : function() {
+        var appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+        appEvent.setParams({
+            &quot;modalIdToClose&quot; : &quot;modalStep2b&quot;
+        });
+        appEvent.fire();
+    },
+    reImportData : function() {
+        var appEvent = $A.get(&quot;e.sfcma:cmaOpenWizardModal&quot;);
+        appEvent.setParams({
+            &quot;modalId&quot; : &quot;reImportDataModal&quot;,
+            &quot;modalIdToClose&quot; : &quot;modalStep2b&quot;
+        });
+        appEvent.fire();
+    }
+})</manifest_text>
+	</manifest_file>
+</LightningBundle>

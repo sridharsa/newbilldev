@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<manifest_file>
+		<manifest_name>cmaImportDataErrorEvent.evt</manifest_name>
+		<manifest_xml>
+			<!-- Copyright (c) 2016 Salesforce
+    @author jesteche@salesforce.com -->
+			<aura:event
+				type="APPLICATION"
+				description="Import Data Modal event fired when an Error or Warning occurs">
+				<aura:attribute
+					name="isError"
+					type="Boolean"
+					description="If the error event belong to a error msg we set this on true"/>
+				<aura:attribute
+					name="totalRecords"
+					type="Integer"
+					description="Total of records imported on Reconciliation"/>
+				<aura:attribute
+					name="totalRecordsFailure"
+					type="Integer"
+					description="Total of records that failed import on Reconciliation"/>
+			</aura:event>
+		</manifest_xml>
+	</manifest_file>
+	<manifest_file>
+		<manifest_name>cmaImportDataErrorEvent.evt-meta.xml</manifest_name>
+		<manifest_xml>
+			<?xml version="1.0" encoding="UTF-8"?>
+			<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+				<apiVersion>36.0</apiVersion>
+				<description>Import Data Error Event</description>
+			</AuraDefinitionBundle>
+		</manifest_xml>
+	</manifest_file>
+</LightningBundle>

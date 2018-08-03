@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SalesforceIQ Cloud</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <description>This tool will create a secure connection between Core Salesforce and SalesforceIQ infrastructure to pull data into the machine learning platform where advanced models will score entities (example, Leads).</description>
+    <namespacePrefix>SIQCloud</namespacePrefix>
+    <version>42.0</version>
+</Package>
