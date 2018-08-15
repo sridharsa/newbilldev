@@ -43,7 +43,7 @@
 	<allowInChatterGroups>false</allowInChatterGroups>
 	<compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
 	<deploymentStatus>Deployed</deploymentStatus>
-	<description>My Desc</description>
+	<description>My Desc - for propagation</description>
 	<enableActivities>true</enableActivities>
 	<enableBulkApi>true</enableBulkApi>
 	<enableChangeDataCapture>false</enableChangeDataCapture>
